@@ -89,7 +89,7 @@ export function SequentialText({
 }: SequentialTextProps) {
   const textLines = lines ?? [children];
   const words = textLines.flatMap((line) => line.split(/\s+/).filter(Boolean));
-  const lineOffsets = textLines.reduce<number[]>((offsets, line, index) => {
+  const lineOffsets = textLines.reduce<number[]>((offsets, _line, index) => {
     if (index === 0) {
       return [0];
     }
