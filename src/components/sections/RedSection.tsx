@@ -2,13 +2,13 @@ import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import redSectionVideo from "@/assets/redsection.mp4";
 
 const HEADING_LINES = [
-  "The industrialized component",
-  "system that reduces risk",
-  "and provides certainty.",
+  "The integrated engineering",
+  "model that eliminates",
+  "guesswork and delivers on time.",
 ];
 
 const BODY_COPY =
-  "Integrates enclosures, structure, and processes within an industrialized and digital framework. It connects design, manufacturing, and assembly to reduce deviations in timelines, costs, and compliance, turning construction into a planned assembly process.";
+  "Quip connects ICT infrastructure, software systems, and construction execution within a single, accountable framework. By unifying design, procurement, and delivery under one team, we eliminate gaps between disciplines — reducing risk, controlling costs, and ensuring every project closes exactly as planned.";
 
 export default function RedSection() {
   return (

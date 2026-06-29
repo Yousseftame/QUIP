@@ -2,14 +2,13 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
 import { useEffect } from "react";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
-import sectionImage from "@/assets/3.avif";
 
 const LABEL_INSET = 36;
 const FALLBACK_WIDTH = 960;
 const FALLBACK_HEIGHT = 900;
 
 const BODY_COPY =
-  "Enerblock is part of the Viuda de Sainz Group. This structure provides industrial capacity and operational continuity to deliver the system in real-world projects.";
+  "Quip's delivery capability is strengthened by long-standing partnerships with globally certified manufacturers and suppliers — including General Electric, R&M, Domnick Hunter, Gunnebo, Blutek, and Mann Filter. These relationships give our clients access to world-class products with full local support.";
 
 function LinkArrow() {
   return (
@@ -113,9 +112,10 @@ export default function IndustrialBackingSection() {
               className="backing-section__content"
               style={{ y: contentY }}
             >
+              <span className="backing-section__label">Global Partnerships</span>
               <h2 className="backing-section__heading">
                 <DiaTextReveal
-                  text="Industrial Backing"
+                  text="Backed by the world's leading names in technology and infrastructure."
                   textColor="#0c0b11"
                   colors={["#0c0b11"]}
                   className="backing-section__heading-line"
@@ -129,12 +129,10 @@ export default function IndustrialBackingSection() {
               <p className="backing-section__body">{BODY_COPY}</p>
 
               <a
-                href="https://www.viudadesainz.com"
+                href="#contact"
                 className="backing-section__cta"
-                target="_blank"
-                rel="noreferrer"
               >
-                <span className="backing-section__cta-label">Viuda de Sainz Group</span>
+                <span className="backing-section__cta-label">Contact</span>
                 <span className="backing-section__cta-icon-wrap">
                   <LinkArrow />
                 </span>
@@ -145,8 +143,8 @@ export default function IndustrialBackingSection() {
           <div ref={mediaRef} className="backing-section__media">
             <motion.div className="backing-section__media-inner" style={{ clipPath }}>
               <img
-                src={sectionImage}
-                alt="Interior of a multi-story building with staircases"
+                src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=960&q=80"
+                alt="Modern glass building facade representing global partnerships"
                 className="backing-section__media-image"
                 width={FALLBACK_WIDTH}
                 height={FALLBACK_HEIGHT}

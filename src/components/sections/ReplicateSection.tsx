@@ -15,12 +15,12 @@ const FALLBACK_WIDTH = 960;
 const FALLBACK_HEIGHT = 900;
 
 const HEADING_LINES = [
-  "Replicating the model",
-  "while maintaining control",
+  "Expanding across the Middle East",
+  "while maintaining one standard",
 ];
 
 const BODY_COPY =
-  "In addition to integrating solutions into projects, Enerblock has developed a scalable industrialized and digital model designed to be replicated in new factories anywhere. Enerblock System® enables the launch of new factories while maintaining standards, traceability and process control, allowing projects to be executed with the same logic and guarantees.";
+  "Beyond delivering individual projects, Quip has built a scalable model designed to grow across new markets without compromise. Our presence spans Egypt and Saudi Arabia — with Dubai next — and every new operation runs on the same engineering standards, accountability systems, and quality guarantees that have defined us for over 30 years.";
 
 function RequestArrow() {
   return (

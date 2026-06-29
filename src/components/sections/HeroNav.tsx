@@ -30,9 +30,10 @@ function ContactArrow() {
 
 type HeroNavProps = {
   onMenuOpen: () => void;
+  onContactOpen: () => void;
 };
 
-export default function HeroNav({ onMenuOpen }: HeroNavProps) {
+export default function HeroNav({ onMenuOpen, onContactOpen }: HeroNavProps) {
   const [menuHovered, setMenuHovered] = useState(false);
   const [contactHovered, setContactHovered] = useState(false);
 
@@ -56,8 +57,9 @@ export default function HeroNav({ onMenuOpen }: HeroNavProps) {
           </span>
         </motion.button>
 
-        <motion.a
-          href="#contact"
+        <motion.button
+          type="button"
+          onClick={onContactOpen}
           className="hero-nav-contact"
           onHoverStart={() => setContactHovered(true)}
           onHoverEnd={() => setContactHovered(false)}
@@ -68,7 +70,7 @@ export default function HeroNav({ onMenuOpen }: HeroNavProps) {
             </TextRoll>
           </span>
           <ContactArrow />
-        </motion.a>
+        </motion.button>
       </div>
     </div>
   );

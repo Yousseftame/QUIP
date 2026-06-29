@@ -1,48 +1,44 @@
 import { useCallback, useRef, useState, type CSSProperties } from "react";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
-import solutionImage1 from "@/assets/1.avif";
-import solutionImage2 from "@/assets/2.avif";
-import solutionImage3 from "@/assets/3.avif";
-import solutionImage4 from "@/assets/4.avif";
 
 const HEADING_LINES = [
-  "Industrialized technology",
+  "Intelligent technology",
   "for an evolving",
   "environment",
 ];
 
 const SOLUTION_ITEMS = [
   {
-    id: "panel",
-    label: "QUIP Panel",
-    title: "Industrial innovation for building envelope systems",
-    body: "Lightweight multilayer sandwich panels designed to integrate precisely with the industrialized components of the QUIP System®. Offsite manufacturing, process control and services geared towards meeting technical and regulatory requirements.",
-    href: "#quip-panel",
-    image: solutionImage1,
+    id: "quip-systems",
+    label: "QUIP SYSTEMS",
+    title: "The backbone of every smart facility",
+    body: "Structured cabling, data centers, network design, and telecom systems — engineered and deployed to international standards. From initial survey to final handover, we build infrastructure that performs under real conditions.",
+    href: "#quip-systems",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
   },
   {
-    id: "robot",
-    label: "QUIP Robot",
-    title: "Digital precision applied to industrial execution",
-    body: "Precision cutting and machining that translate design into exact components ready for assembly. It automates machining, cutting and drilling to reduce errors, minimize waste and maintain scalable control through CAD/CAM technology.",
-    href: "#quip-robot",
-    image: solutionImage2,
+    id: "quip-protect",
+    label: "QUIP PROTECT",
+    title: "Intelligent building systems that work around the clock",
+    body: "Access control, CCTV, fire alarm, public address, and building management systems. Decades of field experience delivering low-voltage solutions across commercial, industrial, and government facilities.",
+    href: "#quip-protect",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
   },
   {
-    id: "frame",
-    label: "QUIP Frame",
-    title: "Lightweight industrialized structure designed to fit",
-    body: "Lightweight galvanized steel structure engineered and dimensioned. Machined and labeled profiles for 2D assembly, with CAD/CAM preparation to ensure precision and consistency with the project.",
-    href: "#quip-frame",
-    image: solutionImage3,
+    id: "quip-digital",
+    label: "QUIP DIGITAL",
+    title: "Custom software built for operational reality",
+    body: "From enterprise applications to system integration and IT infrastructure — we design and deploy digital solutions that connect your teams, streamline your operations, and scale with your growth.",
+    href: "#quip-digital",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
   },
   {
-    id: "system",
-    label: "QUIP System",
-    title: "The 2D industrialized system that reduces risk and provides certainty",
-    body: "Comprehensive system that coordinates envelopes, structure and processes within an industrialized and digital framework. It connects design, manufacturing and assembly as a single governable and scalable process.",
-    href: "#quip-system",
-    image: solutionImage4,
+    id: "quip-build",
+    label: "QUIP BUILD",
+    title: "General contracting delivered with engineering precision",
+    body: "Fit-out, finishing, and full general contracting services — executed by a team that understands both the technical and structural demands of modern facilities across Egypt and the wider Middle East.",
+    href: "#quip-build",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
   },
 ] as const;
 

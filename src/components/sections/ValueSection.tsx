@@ -2,39 +2,36 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import TextType from "@/components/TextType";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
-import valueImage1 from "@/assets/1.avif";
-import valueImage2 from "@/assets/2.avif";
-import valueImage3 from "@/assets/3.avif";
 
 const HEADING_LINES = [
-  "System guarantees that ensure control,",
-  "traceability and reliable on-site execution",
+  "A proven system that guarantees quality,",
+  "accountability, and results you can measure",
 ];
 
 const VALUE_ITEMS = [
   {
     id: "digitalization",
     title: "Digitalization",
-    body: "We connect design, engineering and production in a continuous flow. Traceability and process control from origin to assembly.",
+    body: "We unify ICT design, procurement, and deployment in a single managed workflow. Full traceability across every system — from initial scoping to final commissioning — so nothing falls through the gaps.",
     href: "#digitalization",
-    image: valueImage1,
-    imageAlt: "QR code label on metal profile",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Network server room with lit cables",
   },
   {
     id: "sustainability",
     title: "Sustainability",
-    body: "Sustainability integrated into the method: fewer resources, less waste and cleaner execution thanks to industrialization and reduced rework on site. Impact controlled from design and manufacturing.",
+    body: "Built to last, not just to deliver. We source from certified global partners and apply engineering standards that extend the lifecycle of every infrastructure and construction project we undertake.",
     href: "#sustainability",
-    image: valueImage2,
-    imageAlt: "Side view of a residential building",
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Sustainable green building exterior",
   },
   {
     id: "certification",
     title: "Certification",
-    body: "Certified solutions to reduce technical uncertainty and facilitate regulatory compliance. Documented guarantees that provide confidence to developers, technical teams and regulatory bodies.",
+    body: "Over 30 years of operating to international standards — backed by partnerships with globally certified names including General Electric, R&M, and Gunnebo. Every project delivered with full documentation and compliance traceability.",
     href: "#certification",
-    image: valueImage3,
-    imageAlt: "Woman using a tablet with a stylus",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Professional reviewing compliance documents",
   },
 ] as const;
 

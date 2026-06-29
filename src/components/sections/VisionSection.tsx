@@ -10,20 +10,20 @@ const IMAGE_HEIGHT = 792;
 const LABEL_INSET = 36;
 
 const HEADING_LINES = [
-  "Industrialized vision and",
-  "digital control to execute",
-  "with certainty",
+  "Three decades of engineering",
+  "excellence , built on trust,",
+  "driven by technology.",
 ];
 
 const CARDS = [
   {
     title: "Approach",
-    body: "An industrialized and digital process that integrates architectural design, engineering, production and on-site assembly to achieve precision, control, certainty and measurable results.",
+    body: "From light current and network systems to full-scale general contracting and software — Quip integrates every discipline under one roof, backed by partnerships with global leaders like GE, R&M, and Gunnebo.",
     href: "#approach",
   },
   {
     title: "Company",
-    body: "Operating as a single structure, aligning teams and processes to deliver reliable, traceable and replicable projects with greater predictability and control.",
+    body: "Founded with big ambition and over 30 years of proven growth across the Middle East — with an established presence in Egypt, Saudi Arabia, and expansion into Dubai. One company, one standard of excellence.",
     href: "#company",
   },
 ];
@@ -215,7 +215,7 @@ export default function VisionSection() {
                 ))}
               </h2>
               <p className="vision-section__subheading">
-                Governable, replicable, and sustainable processes.
+                Scalable, reliable, and accountable delivery , across ICT, software, and construction.
               </p>
             </div>
 

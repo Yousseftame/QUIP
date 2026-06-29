@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import { ContactModal } from "@/components/ui/ContactModal";
 import bgImage from "@/assets/frame_0001.webp";
 
 const INTRO_COPY =
-  "Tell us about your project and we will advise you on the fit, scope, and options of the Enerblock System®, as well as how to integrate it into your project and the most suitable level of industrialized components based on your design objectives, technical and regulatory requirements, and timelines.";
+  "Tell us about your project and we'll advise you on the right scope, systems, and approach — whether it's ICT infrastructure, software, or construction. We'll map out the most efficient path from brief to delivery, aligned with your technical requirements, timeline, and budget.";
 
 const TITLE_LINES = [
-  "Build with an",
-  "industrialized",
-  "and digital system",
+  "Build with a team that",
+  "has been doing this",
+  "for over 30 years",
 ];
 
 function ContactArrow() {
@@ -19,42 +21,52 @@ function ContactArrow() {
 }
 
 export default function ContactCtaSection() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <section className="contact-cta-section" id="contact">
-      <img src={bgImage} alt="" className="contact-cta-section__bg" loading="lazy" />
-      <div className="contact-cta-section__shade" aria-hidden />
+    <>
+      <section className="contact-cta-section" id="contact">
+        <img src={bgImage} alt="" className="contact-cta-section__bg" loading="lazy" />
+        <div className="contact-cta-section__shade" aria-hidden />
 
-      <div className="contact-cta-section__line-x" aria-hidden />
-      <div className="contact-cta-section__line-y" aria-hidden />
+        <div className="contact-cta-section__line-x" aria-hidden />
+        <div className="contact-cta-section__line-y" aria-hidden />
 
-      <div className="contact-cta-section__layout">
-        <p className="contact-cta-section__intro">{INTRO_COPY}</p>
+        <div className="contact-cta-section__layout">
+          <p className="contact-cta-section__intro">{INTRO_COPY}</p>
 
-        <div className="contact-cta-section__footer">
-          <h2 className="contact-cta-section__title">
-            {TITLE_LINES.map((line, index) => (
-              <DiaTextReveal
-                key={line}
-                text={line}
-                textColor="#ffffff"
-                colors={["#ffffff"]}
-                className="contact-cta-section__title-line"
-                duration={1.1}
-                delay={0.1 + index * 0.14}
-                startOnView
-                once
-              />
-            ))}
-          </h2>
+          <div className="contact-cta-section__footer">
+            <h2 className="contact-cta-section__title">
+              {TITLE_LINES.map((line, index) => (
+                <DiaTextReveal
+                  key={line}
+                  text={line}
+                  textColor="#ffffff"
+                  colors={["#ffffff"]}
+                  className="contact-cta-section__title-line"
+                  duration={1.1}
+                  delay={0.1 + index * 0.14}
+                  startOnView
+                  once
+                />
+              ))}
+            </h2>
 
-          <a href="#contact" className="contact-cta-section__btn">
-            <span className="contact-cta-section__btn-label">Contact</span>
-            <span className="contact-cta-section__btn-icon">
-              <ContactArrow />
-            </span>
-          </a>
+            <button
+              type="button"
+              onClick={() => setModalOpen(true)}
+              className="contact-cta-section__btn"
+            >
+              <span className="contact-cta-section__btn-label">Contact</span>
+              <span className="contact-cta-section__btn-icon">
+                <ContactArrow />
+              </span>
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 }

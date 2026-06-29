@@ -1,24 +1,39 @@
-import { Plus, X } from "lucide-react";
+import { useState } from "react";
+import { Plus, Minus, X } from "lucide-react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 
 type HeroMenuProps = {
   open: boolean;
   onClose: () => void;
+  onContactOpen: () => void;
 };
 
 const NAV_LINKS = [
-  { label: "Approach", href: "#approach", expandable: false },
-  { label: "Solutions", href: "#solutions", expandable: true },
-  { label: "Company", href: "#company", expandable: false },
-  { label: "Projects", href: "#projects", expandable: false },
-  { label: "Contact", href: "#contact", expandable: false },
+  { id: "about", label: "About Us", href: "#vision" },
+  { 
+    id: "projects",
+    label: "Projects", 
+    expandable: true,
+    subLinks: [
+      { id: "ict", label: "ICT infrastructure", href: "#ict" },
+      { id: "software", label: "Software", href: "#software" },
+      { id: "finishing", label: "Finishing & Construction", href: "#finishing" }
+    ]
+  },
+  { id: "contact", label: "Contact Us", isContact: true },
 ];
 
 const SECONDARY_LINKS = [
-  { label: "Innovation", href: "#innovation" },
-  { label: "Engineering", href: "#engineering" },
-  { label: "Contracting", href: "#contracting" },
-  { label: "FAQs", href: "#faqs" },
+  { label: "Innovation" },
+  { label: "Engineering" },
+  { label: "Contracting" },
+  { label: "FAQs" },
+];
+
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/quip-innovation-and-general-contracting/about/" },
+  { label: "Instagram", href: "https://www.instagram.com/quipinnovations/" },
+  { label: "Facebook", href: "https://business.facebook.com/latest/home?nav_ref=bm_home_redirect&asset_id=215128338865830" },
 ];
 
 const linkVariants: Variants = {
@@ -30,7 +45,9 @@ const linkVariants: Variants = {
   }),
 };
 
-export default function HeroMenu({ open, onClose }: HeroMenuProps) {
+export default function HeroMenu({ open, onClose, onContactOpen }: HeroMenuProps) {
+  const [projectsExpanded, setProjectsExpanded] = useState(false);
+
   return (
     <AnimatePresence>
       {open && (
@@ -70,27 +87,72 @@ export default function HeroMenu({ open, onClose }: HeroMenuProps) {
               </button>
             </div>
 
-            <nav className="hero-menu-nav flex flex-1 flex-col">
+            <nav className="hero-menu-nav flex flex-1 flex-col overflow-y-auto">
               <ul className="hero-menu-primary">
                 {NAV_LINKS.map((link, i) => (
                   <motion.li
-                    key={link.label}
+                    key={link.id}
                     custom={i}
                     initial="hidden"
                     animate="visible"
                     variants={linkVariants}
                   >
-                    <a href={link.href} onClick={onClose} className="hero-menu-link">
-                      <span>{link.label}</span>
-                      {link.expandable && (
-                        <Plus size={20} strokeWidth={2.5} className="shrink-0" aria-hidden />
-                      )}
-                    </a>
+                    {link.isContact ? (
+                      <button 
+                        className="hero-menu-link w-full text-left" 
+                        onClick={() => {
+                          onClose();
+                          onContactOpen();
+                        }}
+                      >
+                        <span>{link.label}</span>
+                      </button>
+                    ) : link.expandable ? (
+                      <div className="flex flex-col">
+                        <button 
+                          className="hero-menu-link w-full text-left flex justify-between items-center" 
+                          onClick={() => setProjectsExpanded(!projectsExpanded)}
+                        >
+                          <span>{link.label}</span>
+                          {projectsExpanded ? (
+                            <Minus size={20} strokeWidth={2.5} className="shrink-0" aria-hidden />
+                          ) : (
+                            <Plus size={20} strokeWidth={2.5} className="shrink-0" aria-hidden />
+                          )}
+                        </button>
+                        <AnimatePresence>
+                          {projectsExpanded && (
+                            <motion.ul 
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden pl-4 mt-2 flex flex-col gap-3"
+                            >
+                              {link.subLinks?.map((sub) => (
+                                <li key={sub.id}>
+                                  <a 
+                                    href={sub.href} 
+                                    className="text-[1.125rem] text-[#0C0B11]/70 hover:text-[#FF5949] transition-colors"
+                                    onClick={onClose}
+                                  >
+                                    {sub.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </motion.ul>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <a href={link.href} onClick={onClose} className="hero-menu-link">
+                        <span>{link.label}</span>
+                      </a>
+                    )}
                   </motion.li>
                 ))}
               </ul>
 
-              <div className="hero-menu-footer">
+              <div className="hero-menu-footer mt-auto">
                 <ul className="hero-menu-secondary">
                   {SECONDARY_LINKS.map((link, i) => (
                     <motion.li
@@ -100,34 +162,26 @@ export default function HeroMenu({ open, onClose }: HeroMenuProps) {
                       animate="visible"
                       variants={linkVariants}
                     >
-                      <a href={link.href} onClick={onClose} className="hero-menu-secondary-link">
+                      <span className="hero-menu-secondary-link cursor-default opacity-50">
                         {link.label}
-                      </a>
+                      </span>
                     </motion.li>
                   ))}
                 </ul>
 
-                <div className="hero-menu-footer-right">
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hero-menu-secondary-link"
-                    onClick={onClose}
-                  >
-                    LinkedIn
-                  </a>
-                  <div className="hero-menu-lang" aria-label="Language">
-                    <button type="button" className="hero-menu-lang-btn">
-                      ES
-                    </button>
-                    <span className="hero-menu-lang-divider" aria-hidden>
-                      |
-                    </span>
-                    <button type="button" className="hero-menu-lang-btn hero-menu-lang-btn--active">
-                      EN
-                    </button>
-                  </div>
+                <div className="hero-menu-footer-right flex flex-col items-end gap-2">
+                  {SOCIAL_LINKS.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hero-menu-secondary-link text-right"
+                      onClick={onClose}
+                    >
+                      {social.label}
+                    </a>
+                  ))}
                 </div>
               </div>
             </nav>
