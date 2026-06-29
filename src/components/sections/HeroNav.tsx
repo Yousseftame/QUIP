@@ -6,11 +6,12 @@ function MenuIcon() {
   return (
     <svg
       viewBox="0 0 16 16"
-      className="hero-nav-menu-plus"
+      className="hero-nav-menu-icon-svg"
       fill="none"
       aria-hidden
     >
-      <path d="M8 2.5v11M2.5 8h11" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M2.5 5.5h11" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M2.5 10.5h11" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   );
 }
@@ -66,9 +67,7 @@ export default function HeroNav({ onMenuOpen }: HeroNavProps) {
               Contact
             </TextRoll>
           </span>
-          <span className="hero-nav-contact-icon">
-            <ContactArrow />
-          </span>
+          <ContactArrow />
         </motion.a>
       </div>
     </div>
