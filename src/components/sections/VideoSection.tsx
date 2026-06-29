@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { SequentialText } from "@/components/ui/sequential-text";
+import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import heroVideo from "@/assets/cde12660b1d9c1e245bb80b5ab01c77e4793569a.mp4";
 
 const CAPTION_LINES = [
@@ -49,11 +49,7 @@ export default function VideoSection() {
       }
 
       const sectionHeight = section.clientHeight;
-      const captionStyles = getComputedStyle(caption);
-      const lineHeight = parseFloat(captionStyles.lineHeight);
-      const captionHeight = Number.isFinite(lineHeight)
-        ? lineHeight * CAPTION_LINES.length
-        : caption.offsetHeight;
+      const captionHeight = caption.offsetHeight;
       const padding = getPaddingPx();
 
       const startY = -captionHeight / 2;
@@ -72,6 +68,10 @@ export default function VideoSection() {
 
     if (sectionRef.current) {
       resizeObserver.observe(sectionRef.current);
+    }
+
+    if (captionRef.current) {
+      resizeObserver.observe(captionRef.current);
     }
 
     window.addEventListener("resize", updateMetrics);
@@ -108,14 +108,21 @@ export default function VideoSection() {
           className="video-section__caption"
           style={{ y }}
         >
-          <SequentialText
-            lines={CAPTION_LINES}
-            startOnView
-            delay={300}
-            wordDuration={280}
-            wordGap={70}
-            className="video-section__text"
-          />
+          <p className="video-section__text">
+            {CAPTION_LINES.map((line, index) => (
+              <DiaTextReveal
+                key={line}
+                text={line}
+                textColor="#ffffff"
+                colors={["#ffffff", "#f7f7f7"]}
+                className="video-section__text-line"
+                duration={1.15}
+                delay={0.12 + index * 0.16}
+                startOnView
+                once
+              />
+            ))}
+          </p>
         </motion.div>
       </div>
     </section>

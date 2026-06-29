@@ -102,6 +102,11 @@ export interface DiaTextRevealProps extends Omit<
    */
   repeatDelay?: number
   /**
+   * When `false`, the sweep is idle at the start position. Set to `true` to run the reveal.
+   * @defaultValue `true`
+   */
+  play?: boolean
+  /**
    * If `true`, the animation starts only after the element enters the viewport.
    * @defaultValue `true`
    */
@@ -132,6 +137,7 @@ export function DiaTextReveal({
   repeatDelay = 0.5,
   startOnView = true,
   once = true,
+  play = true,
   className,
   fixedWidth = false,
   ...props
@@ -193,8 +199,10 @@ export function DiaTextReveal({
       delay,
       ease: sweepEase,
       onComplete() {
+        hasPlayedRef.current = true
         if (!repeat) return
         timerRef.current = setTimeout(() => {
+          hasPlayedRef.current = false
           const next = (indexRef.current + 1) % texts.length
           indexRef.current = next
           setActiveIndex(next)
@@ -208,19 +216,36 @@ export function DiaTextReveal({
 
   useEffect(() => {
     if (prefersReducedMotion) {
+      hasPlayedRef.current = true
       sweepPos.set(SWEEP_END)
       return
     }
+
+    if (!play) {
+      hasPlayedRef.current = false
+      stopRef.current?.()
+      clearTimeout(timerRef.current)
+      sweepPos.set(SWEEP_START)
+      return
+    }
+
     if (startOnView && !isInView) return
     if (once && hasPlayedRef.current) return
-    hasPlayedRef.current = true
+
     playRef.current()
 
     return () => {
       stopRef.current?.()
       clearTimeout(timerRef.current)
+      hasPlayedRef.current = false
     }
-  }, [isInView, startOnView, once, prefersReducedMotion, sweepPos])
+  }, [
+    play,
+    prefersReducedMotion,
+    once,
+    startOnView,
+    ...(startOnView ? [isInView] : []),
+  ])
 
   const fixedW =
     isMulti && fixedWidth && measuredWidths.length > 0
