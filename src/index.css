@@ -1605,47 +1605,7 @@ body.splash-active {
   color: #f2f0eb;
   overflow: hidden;
   pointer-events: auto;
-}
-
-.splash-screen__frame {
-  position: absolute;
-  background: rgba(242, 240, 235, 0.2);
-  z-index: 2;
-  transform-origin: center;
-}
-
-.splash-screen__frame--top,
-.splash-screen__frame--bottom {
-  left: clamp(1.5rem, 4vw, 3rem);
-  right: clamp(1.5rem, 4vw, 3rem);
-  height: 1px;
-}
-
-.splash-screen__frame--top {
-  top: clamp(1.5rem, 4vw, 3rem);
-  transform-origin: left center;
-}
-
-.splash-screen__frame--bottom {
-  bottom: clamp(1.5rem, 4vw, 3rem);
-  transform-origin: right center;
-}
-
-.splash-screen__frame--left,
-.splash-screen__frame--right {
-  top: clamp(1.5rem, 4vw, 3rem);
-  bottom: clamp(1.5rem, 4vw, 3rem);
-  width: 1px;
-}
-
-.splash-screen__frame--left {
-  left: clamp(1.5rem, 4vw, 3rem);
-  transform-origin: center top;
-}
-
-.splash-screen__frame--right {
-  right: clamp(1.5rem, 4vw, 3rem);
-  transform-origin: center bottom;
+  will-change: clip-path, opacity;
 }
 
 .splash-screen__stage {
@@ -1656,11 +1616,6 @@ body.splash-active {
   align-items: center;
   padding: 0 clamp(1.5rem, 5vw, 3rem);
   text-align: center;
-}
-
-.splash-screen__brand {
-  margin: 0;
-  line-height: 0;
 }
 
 .splash-screen__logo-wrap {
@@ -1675,33 +1630,4 @@ body.splash-active {
   aspect-ratio: 1368 / 447;
   object-fit: contain;
   filter: brightness(0) invert(1);
-}
-
-.splash-screen__curtain {
-  position: absolute;
-  top: 0;
-  width: 50.5%;
-  height: 100%;
-  z-index: 6;
-  will-change: transform;
-}
-
-.splash-screen__curtain--left {
-  left: 0;
-  background: #ff5949;
-  border-right: 1px solid rgba(12, 11, 17, 0.12);
-}
-
-.splash-screen__curtain--right {
-  right: 0;
-  background: #ff5949;
-  border-left: 1px solid rgba(12, 11, 17, 0.12);
-}
-
-.splash-screen__flash {
-  position: absolute;
-  inset: 0;
-  z-index: 7;
-  background: radial-gradient(circle at center, rgba(255, 89, 73, 0.45) 0%, transparent 62%);
-  pointer-events: none;
 }
