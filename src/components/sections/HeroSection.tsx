@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import HeroMenu from "./HeroMenu";
 import HeroNav from "./HeroNav";
@@ -36,7 +37,7 @@ export default function HeroSection() {
             <div className="hero-left-inner">
               <div className="hero-left-top">
                 <div ref={logoRef} className="hero-brand">
-                  <a href="/" aria-label="QUIP home">
+                  <Link to="/" aria-label="QUIP home">
                     <img
                       src="/quip-branding-07.png"
                       alt="QUIP"
@@ -44,7 +45,7 @@ export default function HeroSection() {
                       width={1368}
                       height={447}
                     />
-                  </a>
+                  </Link>
                 </div>
 
                 <h1 className="hero-title">

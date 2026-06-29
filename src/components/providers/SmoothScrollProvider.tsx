@@ -35,9 +35,10 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     <ReactLenis
       root
       options={{
-        lerp: 0.085,
+        lerp: 0.12,
         smoothWheel: true,
         autoRaf: false,
+        wheelMultiplier: 0.9,
       }}
     >
       <LenisFramerBridge />

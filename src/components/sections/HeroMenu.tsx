@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus, Minus, X } from "lucide-react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type HeroMenuProps = {
   open: boolean;
@@ -9,15 +10,15 @@ type HeroMenuProps = {
 };
 
 const NAV_LINKS = [
-  { id: "about", label: "About Us", href: "#vision" },
+  { id: "about", label: "About Us", href: "/about" },
   { 
     id: "projects",
     label: "Projects", 
     expandable: true,
     subLinks: [
-      { id: "ict", label: "ICT infrastructure", href: "#ict" },
-      { id: "software", label: "Software", href: "#software" },
-      { id: "finishing", label: "Finishing & Construction", href: "#finishing" }
+      { id: "ict", label: "ICT infrastructure", href: "/projects/ict" },
+      { id: "software", label: "Software", href: "/projects/software" },
+      { id: "finishing", label: "Finishing & Construction", href: "/projects/finishing" }
     ]
   },
   { id: "contact", label: "Contact Us", isContact: true },
@@ -68,7 +69,7 @@ export default function HeroMenu({ open, onClose, onContactOpen }: HeroMenuProps
             transition={{ type: "spring", stiffness: 280, damping: 34 }}
           >
             <div className="hero-menu-header">
-              <a href="/" className="hero-menu-logo" onClick={onClose} aria-label="QUIP home">
+              <Link to="/" className="hero-menu-logo" onClick={onClose} aria-label="QUIP home">
                 <img
                   src="/quip-branding-07.png"
                   alt="QUIP"
@@ -76,7 +77,7 @@ export default function HeroMenu({ open, onClose, onContactOpen }: HeroMenuProps
                   width={1368}
                   height={447}
                 />
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={onClose}
@@ -130,24 +131,24 @@ export default function HeroMenu({ open, onClose, onContactOpen }: HeroMenuProps
                             >
                               {link.subLinks?.map((sub) => (
                                 <li key={sub.id}>
-                                  <a 
-                                    href={sub.href} 
+                                  <Link 
+                                    to={sub.href} 
                                     className="text-[1.125rem] text-[#0C0B11]/70 hover:text-[#FF5949] transition-colors"
                                     onClick={onClose}
                                   >
                                     {sub.label}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
                             </motion.ul>
                           )}
                         </AnimatePresence>
                       </div>
-                    ) : (
-                      <a href={link.href} onClick={onClose} className="hero-menu-link">
+                    ) : "href" in link && link.href ? (
+                      <Link to={link.href} onClick={onClose} className="hero-menu-link">
                         <span>{link.label}</span>
-                      </a>
-                    )}
+                      </Link>
+                    ) : null}
                   </motion.li>
                 ))}
               </ul>
