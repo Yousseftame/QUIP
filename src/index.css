@@ -3053,6 +3053,9 @@ body.splash-active {
   }
 
   .site-footer__bar-item,
+  .site-footer__bar-item:nth-child(1),
+  .site-footer__bar-item:nth-child(2),
+  .site-footer__bar-item:nth-child(3),
   .site-footer__bar-item--end {
     justify-self: center;
     white-space: normal;
