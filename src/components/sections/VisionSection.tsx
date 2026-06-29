@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
+import { useEffect } from "react";
 import TextType from "@/components/TextType";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import sectionImage from "@/assets/quip-branding-11-800x792.png";
@@ -84,10 +85,14 @@ export default function VisionSection() {
   const mediaRef = useRef<HTMLDivElement>(null);
   const [mediaSize, setMediaSize] = useState({ width: IMAGE_WIDTH, height: IMAGE_HEIGHT });
 
-  const { scrollYProgress } = useScroll({
-    target: scrollRef,
-    offset: ["start start", "end end"],
-  });
+  const scrollYProgress = useMotionValue(0);
+  const isInView = useInView(scrollRef, { once: true, margin: "-20% 0px" });
+
+  useEffect(() => {
+    if (isInView) {
+      animate(scrollYProgress, 1, { duration: 1.5, ease: "easeOut" });
+    }
+  }, [isInView, scrollYProgress]);
 
   useLayoutEffect(() => {
     const updateSize = () => {
