@@ -33,13 +33,13 @@ const PROJECTS = [
   },
 ];
 
+// Friction coefficient: 0.92 = smooth long glide, 0.85 = quicker stop
+const FRICTION = 0.92;
+const SNAP_CLASS = "projects-section__track--snapping";
+
 function NavArrow({ direction }: { direction: "left" | "right" }) {
   return (
-    <svg
-      viewBox="0 0 12 12"
-      className="projects-section__arrow-icon"
-      aria-hidden
-    >
+    <svg viewBox="0 0 12 12" className="projects-section__arrow-icon" aria-hidden>
       {direction === "left" ? (
         <path d="M4.6,0.7l-4,5.3l4,5.3h1.9L3.6,8.8C2.8,7.8,2.3,7,1.9,6.6h8.6V5.3H1.9c0.4-0.6,1-1.3,1.7-2.2L6.5,0.7H4.6z" />
       ) : (
@@ -54,15 +54,30 @@ function ProjectCard({
   title,
   image,
   href,
+  isDragging,
 }: {
   code: string;
   title: string;
   image: string;
   href: string;
+  isDragging: boolean;
 }) {
   return (
-    <a href={href} className="projects-card">
-      <img src={image} alt="" className="projects-card__image" loading="lazy" />
+    <a
+      href={href}
+      className="projects-card"
+      draggable={false}
+      onClick={(e) => {
+        if (isDragging) e.preventDefault();
+      }}
+    >
+      <img
+        src={image}
+        alt=""
+        className="projects-card__image"
+        loading="lazy"
+        draggable={false}
+      />
       <span className="projects-card__code">{code}</span>
       <div className="projects-card__overlay" aria-hidden />
       <div className="projects-card__content">
@@ -85,24 +100,43 @@ export default function ProjectsSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
 
+  // All mutable drag state lives in one ref — zero React re-renders on every frame
+  const drag = useRef({
+    active: false,
+    moved: false,
+    startX: 0,
+    prevX: 0,
+    velocity: 0,
+    scrollOrigin: 0,
+    rafId: 0,
+    lastTime: 0,
+  });
+
+  // ── Snap class helpers ────────────────────────────────────────────────────
+  const enableSnap = () => trackRef.current?.classList.add(SNAP_CLASS);
+  const disableSnap = () => trackRef.current?.classList.remove(SNAP_CLASS);
+
+  // ── Scroll-arrow state ────────────────────────────────────────────────────
   const updateScrollState = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
-
-    const maxScroll = track.scrollWidth - track.clientWidth;
+    const max = track.scrollWidth - track.clientWidth;
     setCanScrollPrev(track.scrollLeft > 4);
-    setCanScrollNext(track.scrollLeft < maxScroll - 4);
+    setCanScrollNext(track.scrollLeft < max - 4);
   }, []);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
+    // Start with snap enabled so arrow navigation snaps to cards
+    enableSnap();
     updateScrollState();
+
     track.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", updateScrollState);
-
     return () => {
       track.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
@@ -112,11 +146,103 @@ export default function ProjectsSection() {
   const scrollByCard = (direction: -1 | 1) => {
     const track = trackRef.current;
     if (!track) return;
-
+    enableSnap(); // ensure snap is on for arrow navigation
     const card = track.querySelector<HTMLElement>(".projects-card");
     const amount = card?.offsetWidth ?? track.clientWidth / 3;
-
     track.scrollBy({ left: direction * amount, behavior: "smooth" });
+  };
+
+  // ── Inertia / momentum loop ───────────────────────────────────────────────
+  const startInertia = () => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const loop = () => {
+      const d = drag.current;
+      if (Math.abs(d.velocity) < 0.4) {
+        d.velocity = 0;
+        // Re-enable snap after momentum fully stops
+        enableSnap();
+        return;
+      }
+      d.velocity *= FRICTION;
+      track.scrollLeft += d.velocity;
+      d.rafId = requestAnimationFrame(loop);
+    };
+
+    cancelAnimationFrame(drag.current.rafId);
+    drag.current.rafId = requestAnimationFrame(loop);
+  };
+
+  // ── Pointer event handlers ────────────────────────────────────────────────
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    const track = trackRef.current;
+    if (!track) return;
+
+    // Kill any running momentum
+    cancelAnimationFrame(drag.current.rafId);
+    disableSnap(); // free the track from snap during drag
+
+    const now = performance.now();
+    drag.current = {
+      active: true,
+      moved: false,
+      startX: e.clientX,
+      prevX: e.clientX,
+      velocity: 0,
+      scrollOrigin: track.scrollLeft,
+      rafId: 0,
+      lastTime: now,
+    };
+
+    track.setPointerCapture(e.pointerId);
+    track.style.cursor = "grabbing";
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    if (!d.active) return;
+    const track = trackRef.current;
+    if (!track) return;
+
+    const now = performance.now();
+    const dt = Math.max(now - d.lastTime, 1);
+
+    const dx = e.clientX - d.startX;
+
+    if (!d.moved && Math.abs(dx) > 4) {
+      d.moved = true;
+      setIsDragging(true);
+    }
+
+    if (d.moved) {
+      // Velocity in px/frame (16ms ≈ 60fps)
+      d.velocity = ((d.prevX - e.clientX) / dt) * 16;
+      track.scrollLeft = d.scrollOrigin - dx;
+    }
+
+    d.prevX = e.clientX;
+    d.lastTime = now;
+  };
+
+  const onPointerUp = (_e: React.PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    if (!d.active) return;
+    const track = trackRef.current;
+
+    d.active = false;
+    if (track) track.style.cursor = "";
+
+    if (d.moved) {
+      // Launch momentum — snap will re-enable once velocity drains
+      startInertia();
+    } else {
+      // No real drag — snap back on immediately
+      enableSnap();
+    }
+
+    requestAnimationFrame(() => setIsDragging(false));
   };
 
   return (
@@ -142,9 +268,21 @@ export default function ProjectsSection() {
       </div>
 
       <div className="projects-section__gallery">
-        <div ref={trackRef} className="projects-section__track">
+        <div
+          ref={trackRef}
+          className="projects-section__track"
+          style={{ cursor: "grab" }}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerLeave={onPointerUp}
+        >
           {PROJECTS.map((project) => (
-            <ProjectCard key={project.code} {...project} />
+            <ProjectCard
+              key={project.code}
+              {...project}
+              isDragging={isDragging}
+            />
           ))}
         </div>
       </div>

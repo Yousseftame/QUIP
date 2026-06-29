@@ -1,4 +1,4 @@
-import bgAttachImage from "@/assets/bgattach.avif";
+import bgAttachImage from "@/assets/bgattach.png";
 
 export default function FixedImageSection() {
   return (

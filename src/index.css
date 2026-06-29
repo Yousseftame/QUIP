@@ -1,15 +1,28 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource/inter/700.css";
-@import "@fontsource/inter/800.css";
-@import "@fontsource/inter/900.css";
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('./assets/fonts/Outfit/Outfit-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('./assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Manrope', system-ui, sans-serif;
+    --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
     --color-quip-coral: #FF5949;
     --color-quip-black: #0C0B11;
     --color-sidebar-ring: var(--sidebar-ring);
@@ -126,15 +139,18 @@
     @apply border-border outline-ring/50;
     }
   body {
-    @apply bg-background text-foreground font-bold antialiased;
+    @apply bg-background text-foreground font-medium antialiased;
     margin: 0;
     }
   html {
     @apply font-sans;
-    font-size: 13px;
+    font-size: 14px;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
 }
 
 /* ── Hero (Enerblock-matched layout) ── */
@@ -788,7 +804,7 @@
 
 .red-section__heading-line {
   display: block;
-  white-space: nowrap;
+  white-space: normal;  /* Allow wrapping so text doesn't overflow the column */
   overflow: visible;
   line-height: 1.12;
   padding-bottom: 0.12em;
@@ -1135,6 +1151,14 @@
   }
 }
 
+@media (max-width: 980px) {
+  .fixed-image-section {
+    height: clamp(12rem, 40vw, 18rem);
+    min-height: clamp(12rem, 40vw, 18rem);
+  }
+}
+
+
 .hero-tags {
   position: relative;
   z-index: 1;
@@ -1247,7 +1271,7 @@
 }
 
 .hero-title__line:last-child {
-  padding-bottom: 0.12em;
+  padding-bottom: 0.28em; /* Increased to prevent descender clipping on g, j, p, y */
 }
 
 .hero-claim {
@@ -1346,6 +1370,19 @@
 }
 
 @media (max-width: 980px) {
+  .hero-title__line,
+  .vision-section__heading-line,
+  .red-section__heading-line,
+  .solutions-section__heading-line,
+  .replicate-section__heading-line,
+  .backing-section__heading-line,
+  .projects-section__heading-line,
+  .contact-cta-section__title-line,
+  .value-section__heading-line {
+    white-space: normal !important;
+    text-wrap: balance !important;
+  }
+
   .hero-left {
     grid-column: span 6;
   }
@@ -1355,7 +1392,7 @@
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 980px) {
   .hero-layout {
     grid-template-columns: 1fr;
   }
@@ -1661,9 +1698,13 @@ body.splash-active {
 .projects-section__track {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: none; /* Snap is re-enabled via .projects-section__track--snapping when not dragging */
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+.projects-section__track--snapping {
+  scroll-snap-type: x mandatory;
 }
 
 .projects-section__track::-webkit-scrollbar {
@@ -1865,14 +1906,14 @@ body.splash-active {
   border-left-color: #0c0b11;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .projects-card {
     flex-basis: 50%;
     min-width: 50%;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 980px) {
   .projects-section__heading-line {
     white-space: normal;
   }
@@ -2157,7 +2198,7 @@ body.splash-active {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 980px) {
   .value-section__heading-line {
     text-wrap: balance;
   }
@@ -2431,7 +2472,7 @@ body.splash-active {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 980px) {
   .replicate-section__heading-line {
     text-wrap: balance;
   }
@@ -2705,7 +2746,7 @@ body.splash-active {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 980px) {
   .backing-section__heading-line {
     text-wrap: balance;
   }
@@ -2799,13 +2840,13 @@ body.splash-active {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  align-self: start;
+  align-self: center; /* Centre vertically in the lower-right cell */
   justify-self: stretch;
   gap: clamp(1.5rem, 3vw, 2.5rem);
   width: 100%;
   max-width: none;
-  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem)
-    clamp(1.25rem, 2.5vw, 2rem);
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 2.5vw, 2rem)
+    clamp(2rem, 4vw, 3.5rem);
 }
 
 .contact-cta-section__title {
@@ -2878,7 +2919,7 @@ body.splash-active {
   border-left-color: #0c0b11;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .contact-cta-section {
     --contact-cta-v-line: 100%;
     --contact-cta-h-line: auto;
@@ -2912,7 +2953,7 @@ body.splash-active {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 980px) {
   .contact-cta-section__title-line {
     white-space: normal;
     text-wrap: balance;
@@ -3004,7 +3045,7 @@ body.splash-active {
   opacity: 0.72;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .site-footer__bar-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -3018,13 +3059,13 @@ body.splash-active {
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 980px) {
   .site-footer__main {
     min-height: clamp(10rem, 28vw, 14rem);
   }
 
   .site-footer__brand {
-    font-size: clamp(4rem, 22vw, 7rem);
+    font-size: clamp(3rem, 18vw, 6rem);
     white-space: normal;
   }
 }
@@ -3082,4 +3123,211 @@ body.splash-active {
 
 .scroll-to-top:hover .scroll-to-top__icon {
   transform: rotate(-90deg) translateX(3px);
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE OVERRIDES (≤ 980px)
+   All desktop styles above are untouched.
+   These rules only apply on phones & tablets.
+───────────────────────────────────────────── */
+@media (max-width: 980px) {
+
+  /* Hero: unlock from fixed 100vh, allow natural scroll */
+  .hero-screen {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .hero-wrp {
+    height: auto;
+  }
+
+  .hero-layout {
+    height: auto;
+  }
+
+  .hero-left {
+    height: auto;
+  }
+
+  .hero-left-inner {
+    min-height: 0;
+  }
+
+  /* Hero title: scale down so it fits cleanly on small screens */
+  .hero-title {
+    font-size: clamp(2.25rem, 11vw, 4rem);
+  }
+
+  /* Hero shape area: give it a fixed proportional height on mobile */
+  .hero-shape-area {
+    min-height: 55vw;
+    max-height: 70vw;
+  }
+
+  /* Hero claim: allow text to wrap */
+  .hero-claim__line {
+    white-space: normal;
+  }
+
+  /* Hero tags: simplify to one row */
+  .hero-tags {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Projects: show one card at a time on small screens */
+  .projects-card {
+    flex-basis: 88% !important;
+    min-width: 88% !important;
+  }
+
+  /* Solutions tracker: don't need the hover crosshair area as tall on mobile */
+  .solutions-section__tracker {
+    min-height: 45vw;
+  }
+
+  /* Solutions stack: content padding fix */
+  .solutions-stack__content {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.75rem, 3.5vw, 3rem);
+  }
+
+  /* Value accordion panel: stack image below text */
+  .value-accordion__panel {
+    grid-template-columns: 1fr;
+  }
+
+  .value-accordion__panel-media {
+    max-width: 12rem;
+  }
+
+  .value-accordion__title {
+    font-size: clamp(1.35rem, 5vw, 2rem);
+  }
+
+  /* Contact CTA: full-width single-column on mobile */
+  .contact-cta-section {
+    --contact-cta-v-line: 100%;
+    --contact-cta-h-line: auto;
+    min-height: auto;
+  }
+
+  .contact-cta-section__layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: auto;
+    padding: clamp(4rem, 10vw, 7rem) 0;
+    gap: 0;
+  }
+
+  .contact-cta-section__intro {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(1.05rem, 4vw, 1.4rem);
+    padding: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .contact-cta-section__footer {
+    grid-column: 1;
+    grid-row: 2;
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2rem);
+    width: 100%;
+  }
+
+  .contact-cta-section__title {
+    font-size: clamp(2rem, 9vw, 3.5rem);
+  }
+
+  .contact-cta-section__line-x,
+  .contact-cta-section__line-y {
+    display: none;
+  }
+
+  .contact-cta-section__btn {
+    width: min(100%, 17rem);
+  }
+
+  /* Red section: reduce the media area height */
+  .red-section__media {
+    min-height: 60vw;
+  }
+
+  /* Reduce section paddings on very small screens for breathing room */
+  .solutions-stack__copy {
+    max-width: none;
+  }
+
+  /* Vision section: reduce the large image to a tighter proportion */
+  .vision-section__media {
+    min-height: 70vw;
+  }
+
+  /* Backing + Replicate sections: reduce the media area */
+  .backing-section__media,
+  .replicate-section__media {
+    min-height: 70vw;
+  }
+}
+
+/* ── Vision section card mobile fix ── */
+@media (max-width: 980px) {
+
+  /* The content column uses min-height: 100% which collapses on mobile
+     because the parent grid row is height: auto. Reset it. */
+  .vision-section__content {
+    min-height: 0;
+    display: block; /* Switch from flex to block so children stack naturally */
+  }
+
+  /* Remove flex-grow sizing — let intro be as tall as its content */
+  .vision-section__intro {
+    flex: none;
+    padding: clamp(1.75rem, 5vw, 2.5rem) clamp(1.25rem, 5vw, 2rem);
+  }
+
+  /* Remove flex-grow sizing — let cards be as tall as their content */
+  .vision-section__cards {
+    flex: none;
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    grid-template-columns: unset;
+    min-height: 0;
+  }
+
+  /* Each card: natural content height, no stretch, proper gap between elements */
+  .vision-card {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 5vw, 2rem) clamp(1.25rem, 5vw, 1.75rem);
+    border-right: none;
+    border-bottom: 1px solid rgba(12, 11, 17, 0.18);
+  }
+
+  .vision-card:last-child {
+    border-bottom: none;
+  }
+
+  /* Head: remove the bottom margin since gap handles spacing now */
+  .vision-card__head {
+    margin-bottom: 0;
+  }
+
+  /* Title: readable size on small screens */
+  .vision-card__title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  /* Body text: no max-width constraint on small screens */
+  .vision-card__body {
+    max-width: none;
+    font-size: clamp(0.9375rem, 3.5vw, 1.0625rem);
+  }
+
+  /* Footer button: flows naturally below body, full width for easy tapping */
+  .vision-card__footer {
+    margin-top: 0;
+    width: 100%;
+  }
 }
