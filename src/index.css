@@ -131,6 +131,9 @@
     }
   html {
     @apply font-sans;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     }
 }
 
@@ -163,10 +166,16 @@
   height: 100%;
 }
 
+.hero-layout > * {
+  min-width: 0;
+}
+
 .hero-left {
   grid-column: span 4;
   border-right: 1px solid #0C0B11;
   height: 100%;
+  container-type: inline-size;
+  container-name: hero-left;
 }
 
 .hero-left-inner {
@@ -182,13 +191,16 @@
   display: flex;
   flex-direction: column;
   gap: clamp(0.35rem, 1vh, 0.65rem);
-  padding-right: 0.5rem;
+  padding-right: 0.25rem;
+  min-width: 0;
+  width: 100%;
 }
 
 .hero-brand {
   display: flex;
   align-items: flex-start;
   width: 100%;
+  min-width: 0;
   padding-right: 0;
   margin-bottom: 0;
 }
@@ -202,7 +214,7 @@
 .hero-brand-logo {
   display: block;
   width: 100%;
-  max-width: 24rem;
+  max-width: min(100%, 22rem);
   height: auto;
   aspect-ratio: 1368 / 447;
   object-fit: contain;
@@ -1295,17 +1307,24 @@
 }
 
 .hero-title {
-  font-size: clamp(3.75rem, 6.2vw, 6.5rem);
+  font-size: clamp(2.25rem, 4.5vw, 4.875rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.04em;
-  max-width: 10ch;
+  max-width: 100%;
   margin: 3px 0 0;
   overflow: visible;
 }
 
+@supports (font-size: 1cqi) {
+  .hero-title {
+    font-size: clamp(2.25rem, 12.5cqi, 4.875rem);
+  }
+}
+
 .hero-title__line {
   display: block;
+  max-width: 100%;
   white-space: nowrap;
   overflow: visible;
   line-height: 0.9 !important;
@@ -1333,11 +1352,17 @@
 .hero-claim__line {
   display: block;
   width: 100%;
-  font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+  font-size: clamp(1.125rem, 2vw, 1.75rem);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.024em;
   color: #0c0b11;
+}
+
+@supports (font-size: 1cqi) {
+  .hero-claim__line {
+    font-size: clamp(1.125rem, 4.25cqi, 1.75rem);
+  }
 }
 
 .hero-btn {
