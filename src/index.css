@@ -188,7 +188,7 @@
 
 .hero-left {
   grid-column: span 4;
-  border-right: 1px solid #0C0B11;
+  border-right: 1px solid #ffffff;
   height: 100%;
   container-type: inline-size;
   container-name: hero-left;
@@ -235,8 +235,7 @@
   aspect-ratio: 1368 / 447;
   object-fit: contain;
   object-position: left top;
-  filter: invert(1);
-  mix-blend-mode: multiply;
+  filter: brightness(0) invert(1);
 }
 
 .hero-right {
@@ -261,8 +260,8 @@
   display: flex;
   align-items: stretch;
   justify-content: flex-end;
-  border-top: 1px solid #0C0B11;
-  border-bottom: 1px solid #0C0B11;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
   min-height: 4.75rem;
   padding: 0.875rem var(--hero-grid-margin);
 }
@@ -287,8 +286,8 @@
   min-height: 3.25rem;
   display: flex;
   align-items: stretch;
-  border: 1px solid #0c0b11;
-  background: #0c0b11;
+  border: 1px solid #ffffff;
+  background: transparent;
   color: #ffffff;
   cursor: pointer;
   padding: 0;
@@ -317,7 +316,7 @@
 }
 
 .hero-nav-menu:hover .hero-nav-menu-icon {
-  background: #0c0b11;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .hero-nav-menu:hover .hero-nav-menu-icon-svg {
@@ -332,7 +331,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  background: #0c0b11;
+  background: transparent;
+  border: 1px solid #ffffff;
   color: #ffffff;
   padding: 0 1.5rem;
   font-size: 1rem;
@@ -436,7 +436,7 @@
 }
 
 .hero-menu-link:hover {
-  color: #FF5949;
+  color: #232F72;
 }
 
 .hero-menu-footer {
@@ -467,7 +467,7 @@
 }
 
 .hero-menu-secondary-link:hover {
-  color: #FF5949;
+  color: #232F72;
 }
 
 .hero-menu-footer-right {
@@ -1166,7 +1166,7 @@
   grid-template-columns: auto 1fr;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid #0c0b11;
+  border-bottom: 1px solid #ffffff;
   font-weight: 700;
   min-height: 5rem;
   padding: 1.375rem var(--hero-grid-margin);
@@ -1209,8 +1209,8 @@
   flex: 1;
   width: 100%;
   height: 100%;
-  border-left: 1px solid rgba(12, 11, 17, 0.3);
-  border-right: 1px solid rgba(12, 11, 17, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .hero-shape-grid {
@@ -1221,8 +1221,8 @@
 }
 
 .hero-shape-grid-cell {
-  border-right: 1px solid rgba(12, 11, 17, 0.3);
-  border-bottom: 1px solid rgba(12, 11, 17, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .hero-shape-frame .hero-shape-mount {
@@ -1232,7 +1232,7 @@
 }
 
 .hero-shape-frame svg {
-  fill: #0C0B11;
+  fill: #ffffff;
   display: block;
   line-height: 0;
   padding: 2.5rem 0 1rem;
@@ -1281,7 +1281,7 @@
 
 .hero-services__line {
   height: 2px;
-  background: #0c0b11;
+  background: #ffffff;
   margin-bottom: clamp(1rem, 2vh, 1.5rem);
 }
 
@@ -1300,14 +1300,14 @@
   gap: clamp(0.75rem, 1.5vw, 1.25rem);
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   font-weight: 600;
-  color: #0c0b11;
+  color: #ffffff;
   letter-spacing: -0.01em;
 }
 
 .hero-services__bullet {
   width: 0.4em;
   height: 0.4em;
-  background: #0c0b11;
+  background: #ffffff;
   border-radius: 50%;
   flex-shrink: 0;
   margin-top: 0.1em;
@@ -1336,7 +1336,7 @@
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.024em;
-  color: #0c0b11;
+  color: #ffffff;
 }
 
 @supports (font-size: 1cqi) {
@@ -1381,7 +1381,7 @@
 }
 
 .hero-h-line {
-  background: #0C0B11;
+  background: #ffffff;
   position: absolute;
   opacity: 0.3;
 }
@@ -1453,7 +1453,7 @@
 
   .hero-left {
     border-right: none;
-    border-bottom: 1px solid #0C0B11;
+    border-bottom: 1px solid #ffffff;
     height: auto;
   }
 
@@ -3172,14 +3172,14 @@ body.splash-active {
   height: 3.5rem;
   border-radius: 50%;
   border: none;
-  background: #ff5949;
-  color: #0c0b11;
+  background: #232F72;
+  color: #ffffff;
   cursor: pointer;
   padding: 0;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  box-shadow: 0 4px 16px rgba(255, 89, 73, 0.3);
+  box-shadow: 0 4px 16px rgba(35, 47, 114, 0.3);
   transition:
     opacity 0.4s ease,
     visibility 0.4s ease,
@@ -3196,9 +3196,9 @@ body.splash-active {
 }
 
 .scroll-to-top:hover {
-  background: #0c0b11;
-  color: #ff5949;
-  box-shadow: 0 8px 24px rgba(12, 11, 17, 0.3);
+  background: #1a2458;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(35, 47, 114, 0.4);
   transform: translateY(-4px) scale(1.05);
 }
 

@@ -95,9 +95,9 @@ export default function HeroShape({ logoRef }: HeroShapeProps) {
           preserveAspectRatio="xMidYMid meet"
           aria-hidden
         >
-          <motion.polygon fill="#0C0B11" points={pointsA} />
-          <motion.polygon fill="#0C0B11" points={pointsB} />
-          <motion.polygon fill="#0C0B11" points={pointsC} />
+          <motion.polygon fill="#FFFFFF" points={pointsA} />
+          <motion.polygon fill="#FFFFFF" points={pointsB} />
+          <motion.polygon fill="#FFFFFF" points={pointsC} />
         </motion.svg>
 
         <motion.div

@@ -30,7 +30,7 @@ export default function HeroSection() {
   });
 
   return (
-    <section className="hero-screen bg-[#FF5949] text-[#0C0B11]">
+    <section className="hero-screen bg-[#232F72] text-white">
       <div className="hero-wrp h-full">
         <div className="hero-layout h-full">
           <div className="hero-left">
@@ -53,8 +53,8 @@ export default function HeroSection() {
                     <DiaTextReveal
                       key={line}
                       text={line}
-                      textColor="#0c0b11"
-                      colors={["#0c0b11"]}
+                      textColor="#ffffff"
+                      colors={["#ffffff"]}
                       className="hero-title__line"
                       duration={1.15}
                       delay={index * 0.12}
@@ -101,8 +101,8 @@ export default function HeroSection() {
                       />
                       <DiaTextReveal
                         text={service}
-                        textColor="#0c0b11"
-                        colors={["#0c0b11"]}
+                        textColor="#ffffff"
+                        colors={["#ffffff"]}
                         className="hero-services__text"
                         duration={1}
                         delay={0.6 + index * 0.15}
@@ -167,7 +167,7 @@ export default function HeroSection() {
         {showFloatingNav && (
           <motion.button
             type="button"
-            className="fixed top-8 right-8 z-[35] flex items-center justify-center w-12 h-12 bg-[#0c0b11] text-[#f5f3ee] rounded-full shadow-lg border border-white/10 transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="fixed top-8 right-8 z-[35] flex items-center justify-center w-12 h-12 bg-white text-[#232F72] rounded-full shadow-lg border border-white/10 transition-transform hover:scale-110 active:scale-95 cursor-pointer"
             initial={{ opacity: 0, scale: 0.8, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -20 }}

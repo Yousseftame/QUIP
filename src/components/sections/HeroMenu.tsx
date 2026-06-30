@@ -133,7 +133,7 @@ export default function HeroMenu({ open, onClose, onContactOpen }: HeroMenuProps
                                 <li key={sub.id}>
                                   <Link 
                                     to={sub.href} 
-                                    className="text-[1.125rem] text-[#0C0B11]/70 hover:text-[#FF5949] transition-colors"
+                                    className="text-[1.125rem] text-[#0C0B11]/70 hover:text-[#232F72] transition-colors"
                                     onClick={onClose}
                                   >
                                     {sub.label}
