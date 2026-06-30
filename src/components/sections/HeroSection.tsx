@@ -6,7 +6,7 @@ import HeroMenu from "./HeroMenu";
 import HeroNav from "./HeroNav";
 import HeroShape from "./HeroShape";
 import HeroShapeGrid from "./HeroShapeGrid";
-import { ContactModal } from "@/components/ui/ContactModal";
+import { useContactModal } from "@/context/contact-modal-context";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import { useSplashDone } from "@/components/splash/splash-context";
 
@@ -14,7 +14,7 @@ const HERO_TITLE_LINES = ["Next-Gen", "Engineering"];
 
 export default function HeroSection() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [contactModalOpen, setContactModalOpen] = useState(false);
+  const { openContactModal } = useContactModal();
   const [showFloatingNav, setShowFloatingNav] = useState(false);
   const logoRef = useRef<HTMLDivElement>(null);
   const splashDone = useSplashDone();
@@ -130,7 +130,7 @@ export default function HeroSection() {
             <div className="hero-main">
               <HeroNav 
                 onMenuOpen={() => setMenuOpen(true)} 
-                onContactOpen={() => setContactModalOpen(true)} 
+                onContactOpen={openContactModal} 
               />
 
               <div className="hero-tags">
@@ -156,9 +156,11 @@ export default function HeroSection() {
       <HeroMenu 
         open={menuOpen} 
         onClose={() => setMenuOpen(false)} 
-        onContactOpen={() => setContactModalOpen(true)}
+        onContactOpen={() => {
+          setMenuOpen(false);
+          openContactModal();
+        }}
       />
-      <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
 
       {/* Floating Menu Button */}
       <AnimatePresence>

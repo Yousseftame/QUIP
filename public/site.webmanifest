@@ -1,0 +1,25 @@
+{
+  "name": "QUIP Innovation and General Contracting",
+  "short_name": "QUIP",
+  "description": "ICT infrastructure, software, and general contracting across the Middle East.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0C0B11",
+  "theme_color": "#0C0B11",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/logo-quip.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo-quip.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

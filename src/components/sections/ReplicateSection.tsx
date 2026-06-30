@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import { useEffect } from "react";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import { useContactModal } from "@/context/contact-modal-context";
 import sectionImage from "@/assets/4.avif";
 
 const LABEL_INSET = 36;
@@ -36,6 +37,7 @@ function clamp(value: number, min: number, max: number) {
 
 export default function ReplicateSection() {
   const scrollRef = useRef<HTMLElement>(null);
+  const { openContactModal } = useContactModal();
   const mediaRef = useRef<HTMLDivElement>(null);
   const contentColRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -186,12 +188,16 @@ export default function ReplicateSection() {
 
               <p className="replicate-section__body">{BODY_COPY}</p>
 
-              <a href="#contact" className="replicate-section__cta">
+              <button
+                type="button"
+                onClick={openContactModal}
+                className="replicate-section__cta"
+              >
                 <span className="replicate-section__cta-label">Request information</span>
                 <span className="replicate-section__cta-icon-wrap">
                   <RequestArrow />
                 </span>
-              </a>
+              </button>
             </motion.div>
           </div>
         </div>

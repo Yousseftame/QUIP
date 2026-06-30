@@ -9,21 +9,22 @@ import ReplicateSection from '@/components/sections/ReplicateSection'
 import IndustrialBackingSection from '@/components/sections/IndustrialBackingSection'
 import ContactCtaSection from '@/components/sections/ContactCtaSection'
 import FooterSection from '@/components/sections/FooterSection'
+import { ContactModalProvider } from '@/context/contact-modal-context'
 
 export default function Home() {
   return (
-    <div>
-          <HeroSection />
-          <VisionSection />
-          <RedSection />
-          <SolutionsSection />
-          <FixedImageSection />
-          <ProjectsSection />
-          <ValueSection />
-          <ReplicateSection />
-          <IndustrialBackingSection />
-          <ContactCtaSection />
-          <FooterSection />
-    </div>
+    <ContactModalProvider>
+      <HeroSection />
+      <VisionSection />
+      <RedSection />
+      <SolutionsSection />
+      <FixedImageSection />
+      <ProjectsSection />
+      <ValueSection />
+      <ReplicateSection />
+      <IndustrialBackingSection />
+      <ContactCtaSection />
+      <FooterSection />
+    </ContactModalProvider>
   )
 }

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
 import { useEffect } from "react";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import { useContactModal } from "@/context/contact-modal-context";
 
 const LABEL_INSET = 36;
 const FALLBACK_WIDTH = 960;
@@ -24,6 +25,7 @@ function clamp(value: number, min: number, max: number) {
 
 export default function IndustrialBackingSection() {
   const scrollRef = useRef<HTMLElement>(null);
+  const { openContactModal } = useContactModal();
   const mediaRef = useRef<HTMLDivElement>(null);
   const contentColRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -128,15 +130,16 @@ export default function IndustrialBackingSection() {
 
               <p className="backing-section__body">{BODY_COPY}</p>
 
-              <a
-                href="#contact"
+              <button
+                type="button"
+                onClick={openContactModal}
                 className="backing-section__cta"
               >
                 <span className="backing-section__cta-label">Contact</span>
                 <span className="backing-section__cta-icon-wrap">
                   <LinkArrow />
                 </span>
-              </a>
+              </button>
             </motion.div>
           </div>
 

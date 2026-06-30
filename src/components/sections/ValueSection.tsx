@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import TextType from "@/components/TextType";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
@@ -13,7 +14,7 @@ const VALUE_ITEMS = [
     id: "digitalization",
     title: "Digitalization",
     body: "We unify ICT design, procurement, and deployment in a single managed workflow. Full traceability across every system — from initial scoping to final commissioning — so nothing falls through the gaps.",
-    href: "#digitalization",
+    to: "/projects/software",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
     imageAlt: "Network server room with lit cables",
   },
@@ -21,7 +22,7 @@ const VALUE_ITEMS = [
     id: "sustainability",
     title: "Sustainability",
     body: "Built to last, not just to deliver. We source from certified global partners and apply engineering standards that extend the lifecycle of every infrastructure and construction project we undertake.",
-    href: "#sustainability",
+    to: "/about",
     image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80",
     imageAlt: "Sustainable green building exterior",
   },
@@ -29,7 +30,7 @@ const VALUE_ITEMS = [
     id: "certification",
     title: "Certification",
     body: "Over 30 years of operating to international standards — backed by partnerships with globally certified names including General Electric, R&M, and Gunnebo. Every project delivered with full documentation and compliance traceability.",
-    href: "#certification",
+    to: "/about",
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
     imageAlt: "Professional reviewing compliance documents",
   },
@@ -140,12 +141,12 @@ function ValueAccordionItem({
         >
           <div className="value-accordion__panel-copy">
             <p className="value-accordion__body">{item.body}</p>
-            <a href={item.href} className="value-accordion__cta">
+            <Link to={item.to} className="value-accordion__cta">
               <span className="value-accordion__cta-label">Learn more</span>
               <span className="value-accordion__cta-icon-wrap">
                 <LearnMoreArrow />
               </span>
-            </a>
+            </Link>
           </div>
 
           <div className="value-accordion__panel-media">

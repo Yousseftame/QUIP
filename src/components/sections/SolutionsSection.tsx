@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState, type CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
 const HEADING_LINES = [
@@ -13,7 +14,7 @@ const SOLUTION_ITEMS = [
     label: "QUIP SYSTEMS",
     title: "The backbone of every smart facility",
     body: "Structured cabling, data centers, network design, and telecom systems — engineered and deployed to international standards. From initial survey to final handover, we build infrastructure that performs under real conditions.",
-    href: "#quip-systems",
+    to: "/projects/ict",
     image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -21,7 +22,7 @@ const SOLUTION_ITEMS = [
     label: "QUIP PROTECT",
     title: "Intelligent building systems that work around the clock",
     body: "Access control, CCTV, fire alarm, public address, and building management systems. Decades of field experience delivering low-voltage solutions across commercial, industrial, and government facilities.",
-    href: "#quip-protect",
+    to: "/projects/ict",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -29,7 +30,7 @@ const SOLUTION_ITEMS = [
     label: "QUIP DIGITAL",
     title: "Custom software built for operational reality",
     body: "From enterprise applications to system integration and IT infrastructure — we design and deploy digital solutions that connect your teams, streamline your operations, and scale with your growth.",
-    href: "#quip-digital",
+    to: "/projects/software",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -37,7 +38,7 @@ const SOLUTION_ITEMS = [
     label: "QUIP BUILD",
     title: "General contracting delivered with engineering precision",
     body: "Fit-out, finishing, and full general contracting services — executed by a team that understands both the technical and structural demands of modern facilities across Egypt and the wider Middle East.",
-    href: "#quip-build",
+    to: "/projects/finishing",
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
   },
 ] as const;
@@ -115,7 +116,7 @@ function SolutionStackItem({
   label,
   title,
   body,
-  href,
+  to,
   image,
   zIndex,
 }: {
@@ -123,7 +124,7 @@ function SolutionStackItem({
   label: string;
   title: string;
   body: string;
-  href: string;
+  to: string;
   image: string;
   zIndex: number;
 }) {
@@ -162,12 +163,12 @@ function SolutionStackItem({
             <h3 className="solutions-stack__title">{title}</h3>
             <p className="solutions-stack__body">{body}</p>
 
-            <a href={href} className="solutions-stack__footer">
+            <Link to={to} className="solutions-stack__footer">
               <span className="solutions-stack__footer-label">Learn more</span>
               <span className="solutions-stack__footer-icon">
                 <LearnMoreArrow />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -213,7 +214,7 @@ export default function SolutionsSection() {
             label={item.label}
             title={item.title}
             body={item.body}
-            href={item.href}
+            to={item.to}
             image={item.image}
             zIndex={index + 1}
           />

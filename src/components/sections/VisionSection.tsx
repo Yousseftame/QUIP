@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
 import { useEffect } from "react";
 import TextType from "@/components/TextType";
@@ -19,12 +20,12 @@ const CARDS = [
   {
     title: "Approach",
     body: "From light current and network systems to full-scale general contracting and software — Quip integrates every discipline under one roof, backed by partnerships with global leaders like GE, R&M, and Gunnebo.",
-    href: "#approach",
+    to: "/projects/ict",
   },
   {
     title: "Company",
     body: "Founded with big ambition and over 30 years of proven growth across the Middle East — with an established presence in Egypt, Saudi Arabia, and expansion into Dubai. One company, one standard of excellence.",
-    href: "#company",
+    to: "/about",
   },
 ];
 
@@ -39,12 +40,12 @@ function LearnMoreArrow() {
 function VisionCard({
   title,
   body,
-  href,
+  to,
   index,
 }: {
   title: string;
   body: string;
-  href: string;
+  to: string;
   index: number;
 }) {
   return (
@@ -66,12 +67,12 @@ function VisionCard({
 
       <p className="vision-card__body">{body}</p>
 
-      <a href={href} className="vision-card__footer">
+      <Link to={to} className="vision-card__footer">
         <span className="vision-card__footer-label">Learn more</span>
         <span className="vision-card__footer-icon">
           <LearnMoreArrow />
         </span>
-      </a>
+      </Link>
     </article>
   );
 }
