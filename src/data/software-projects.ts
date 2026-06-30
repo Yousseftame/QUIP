@@ -17,12 +17,13 @@ import hudhudImg from "@/assets/softwarepageimages/hudhud-mobo.png";
 import nacdwImg from "@/assets/softwarepageimages/nacdw-mobo.png";
 import tutImg from "@/assets/softwarepageimages/tut.png";
 import ioscoImg from "@/assets/softwarepageimages/iosco.png";
+import aoneImg from "@/assets/softwarepageimages/aone.png";
 
 export const SOFTWARE_DEPARTMENTS: SoftwareDepartment[] = [
   {
     id: "web",
     index: "01",
-    label: "Web",
+    label: "Web & AI",
     headline: "Platforms built for scale and trust",
     intro:
       "Enterprise web applications, marketplaces, and event systems — engineered for performance, security, and seamless user experiences across browsers.",
@@ -70,6 +71,7 @@ const SEEDS: Seed[] = [
   {
     id: "sw-ai-qs",
     departmentId: "web",
+    platformBadge: "AI",
     title: "AI-Powered Quantity Surveying",
     subtitle: "HAH",
     image: hahQsImg,
@@ -147,6 +149,38 @@ const SEEDS: Seed[] = [
         title: "Modern Web Stack",
         description:
           "Leveraged a high-performance React/Next.js frontend to deliver a seamless and simplified contracting user experience.",
+      },
+    ],
+  },
+  {
+    id: "sw-aone",
+    departmentId: "web",
+    platformBadge: "AI",
+    title: "Aone",
+    subtitle: "AI Agent SaaS Platform — Under Development",
+    image: aoneImg,
+    description:
+      "Aone is a large-scale SaaS platform enabling businesses to create and deploy custom AI agents trained on their own data. Built for customer support, sales, onboarding, and internal knowledge management, the platform supports 95+ languages, integrates with major LLMs (OpenAI, Google, Anthropic), and connects with tools like Zendesk, Intercom, Salesforce, WhatsApp, Shopify, and more.",
+    solutions: [
+      {
+        title: "Custom AI Agents",
+        description:
+          "Empowers teams to build and deploy agents trained on proprietary business data for support, sales, onboarding, and internal knowledge workflows.",
+      },
+      {
+        title: "Multi-LLM & Integrations",
+        description:
+          "Supports 95+ languages and connects with leading LLM providers alongside Zendesk, Intercom, Salesforce, WhatsApp, Shopify, and other core business tools.",
+      },
+      {
+        title: "Configurable Dashboard & AI Actions",
+        description:
+          "Delivers a flexible control center with AI Actions that trigger real operations through APIs — beyond chat into executable business workflows.",
+      },
+      {
+        title: "Multi-Channel Deployment",
+        description:
+          "Deploys agents across channels with automated human handoff workflows, ensuring seamless escalation when live support is required.",
       },
     ],
   },
@@ -456,6 +490,11 @@ const SEEDS: Seed[] = [
 ];
 
 export const SOFTWARE_PROJECTS: SoftwareProject[] = SEEDS;
+
+export function getSoftwareProjectPlatformBadge(project: SoftwareProject): string {
+  if (project.departmentId === "mobile") return "Mobile";
+  return project.platformBadge ?? "Web";
+}
 
 export function getSoftwareProjectsByDepartment(
   departmentId: SoftwareDepartmentId,

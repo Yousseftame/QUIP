@@ -6,6 +6,7 @@ import FooterSection from "@/components/sections/FooterSection";
 import { ContactModal } from "@/components/ui/ContactModal";
 import ProgressiveImage from "@/components/ui/ProgressiveImage";
 import { usePreloadImages } from "@/hooks/usePreloadImages";
+import { getSoftwareProjectPlatformBadge } from "@/data/software-projects";
 import type { SoftwareDepartment, SoftwareProject, SoftwareSolution } from "@/types/software-project";
 
 type SoftwareProjectDetailPageProps = {
@@ -99,7 +100,9 @@ export default function SoftwareProjectDetailPage({
       <section className="software-detail__content software-detail__content--animate">
         <div className="software-detail__intro">
           <div className="software-detail__meta">
-            <span className="software-detail__department">{department.label}</span>
+            <span className="software-detail__department">
+              {getSoftwareProjectPlatformBadge(project)}
+            </span>
             {project.subtitle && (
               <span className="software-detail__subtitle">{project.subtitle}</span>
             )}

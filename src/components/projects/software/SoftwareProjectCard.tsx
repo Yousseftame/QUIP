@@ -2,17 +2,13 @@ import { memo } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ProgressiveImage from "@/components/ui/ProgressiveImage";
+import { getSoftwareProjectPlatformBadge } from "@/data/software-projects";
 import type { SoftwareProject } from "@/types/software-project";
 
 type SoftwareProjectCardProps = {
   project: SoftwareProject;
   index: number;
 };
-
-const PLATFORM_LABELS = {
-  web: "Web",
-  mobile: "Mobile",
-} as const;
 
 function SoftwareProjectCard({ project, index }: SoftwareProjectCardProps) {
   const detailPath = `/projects/software/${project.id}`;
@@ -28,7 +24,7 @@ function SoftwareProjectCard({ project, index }: SoftwareProjectCardProps) {
             loading="lazy"
           />
           <div className="software-card__cover-overlay" aria-hidden />
-          <span className="software-card__platform">{PLATFORM_LABELS[project.departmentId]}</span>
+          <span className="software-card__platform">{getSoftwareProjectPlatformBadge(project)}</span>
         </div>
 
         <div className="software-card__body">

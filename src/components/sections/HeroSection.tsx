@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
@@ -16,7 +16,6 @@ export default function HeroSection() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { openContactModal } = useContactModal();
   const [showFloatingNav, setShowFloatingNav] = useState(false);
-  const logoRef = useRef<HTMLDivElement>(null);
   const splashDone = useSplashDone();
   const { scrollY } = useScroll();
 
@@ -36,7 +35,7 @@ export default function HeroSection() {
           <div className="hero-left">
             <div className="hero-left-inner">
               <div className="hero-left-top">
-                <div ref={logoRef} className="hero-brand">
+                <div className="hero-brand">
                   <Link to="/" aria-label="QUIP home">
                     <img
                       src="/quip-branding-07.png"
@@ -145,7 +144,7 @@ export default function HeroSection() {
               <div className="hero-shape-area">
                 <div className="hero-shape-frame">
                   <HeroShapeGrid columns={5} rows={5} />
-                  <HeroShape logoRef={logoRef} />
+                  <HeroShape />
                 </div>
               </div>
             </div>

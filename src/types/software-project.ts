@@ -14,6 +14,8 @@ export type SoftwareProject = {
   image: string;
   demoUrl?: string;
   departmentId: SoftwareDepartmentId;
+  /** Card/detail badge for web projects — defaults to "Web". */
+  platformBadge?: "AI" | "Web";
 };
 
 export type SoftwareDepartment = {
