@@ -135,7 +135,7 @@ export default function HeroSection() {
 
               <div className="hero-tags">
                 <div className="hero-tags-cell">
-                  <span className="hero-tag-name">SYSTEM</span>
+                  <span className="hero-tag-name">QUIP.</span>
                 </div>
                 <div className="hero-tags-cell">
                   <span className="hero-tag-data">EST. 1990</span>
