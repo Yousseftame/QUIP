@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
+import ProgressiveImage from "@/components/ui/ProgressiveImage";
 import type { Project } from "@/types/project";
 
 type ProjectGalleryCardProps = {
@@ -24,12 +25,11 @@ function ProjectGalleryCard({ project, detailPath }: ProjectGalleryCardProps) {
         aria-label={`View ${project.name}`}
       >
         <div className="work-gallery-card__media">
-          <img
+          <ProgressiveImage
             src={project.image}
             alt=""
             className="work-gallery-card__image"
             loading="lazy"
-            decoding="async"
             draggable={false}
           />
           <div className="work-gallery-card__overlay" aria-hidden />

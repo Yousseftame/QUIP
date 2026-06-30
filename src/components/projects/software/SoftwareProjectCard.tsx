@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ProgressiveImage from "@/components/ui/ProgressiveImage";
 import type { SoftwareProject } from "@/types/software-project";
 
 type SoftwareProjectCardProps = {
@@ -20,11 +21,11 @@ function SoftwareProjectCard({ project, index }: SoftwareProjectCardProps) {
     <article className="software-card">
       <Link to={detailPath} className="software-card__link">
         <div className={`software-card__cover software-card__cover--${project.departmentId}`}>
-          <img
+          <ProgressiveImage
             src={project.image}
             alt=""
             className="software-card__cover-image"
-            decoding="async"
+            loading="lazy"
           />
           <div className="software-card__cover-overlay" aria-hidden />
           <span className="software-card__platform">{PLATFORM_LABELS[project.departmentId]}</span>

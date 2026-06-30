@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import HeroMenu from "@/components/sections/HeroMenu";
 import FooterSection from "@/components/sections/FooterSection";
 import { ContactModal } from "@/components/ui/ContactModal";
+import ProgressiveImage from "@/components/ui/ProgressiveImage";
+import { usePreloadImages } from "@/hooks/usePreloadImages";
 import type { Project } from "@/types/project";
 
 type ProjectDetailPageProps = {
@@ -56,6 +58,10 @@ export default function ProjectDetailPage({
     { label: "Client", value: project.client },
   ];
 
+  usePreloadImages(
+    [prevProject?.image, nextProject?.image].filter((src): src is string => Boolean(src)),
+  );
+
   return (
     <div className="project-detail">
       <header className="project-detail__header">
@@ -85,7 +91,13 @@ export default function ProjectDetailPage({
 
       <section className="project-detail__hero">
         <div className="project-detail__hero-media">
-          <img src={project.image} alt="" className="project-detail__hero-image" decoding="async" />
+          <ProgressiveImage
+            src={project.image}
+            alt=""
+            className="project-detail__hero-image"
+            fetchPriority="high"
+            loading="eager"
+          />
           <div className="project-detail__hero-overlay" aria-hidden />
           <div className="project-detail__hero-frame" aria-hidden />
 

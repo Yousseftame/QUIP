@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
+import ProgressiveImage from "@/components/ui/ProgressiveImage";
+import { usePreloadImages } from "@/hooks/usePreloadImages";
 
 type FinishingProjectGalleryProps = {
   images: string[];
@@ -24,6 +26,8 @@ export default function FinishingProjectGallery({
 
   const goPrev = useCallback(() => goTo(index - 1), [goTo, index]);
   const goNext = useCallback(() => goTo(index + 1), [goTo, index]);
+
+  usePreloadImages(images);
 
   useEffect(() => {
     if (!lightboxOpen) return;
@@ -55,12 +59,13 @@ export default function FinishingProjectGallery({
             onClick={() => setLightboxOpen(true)}
             aria-label={`View full image ${index + 1} of ${total} for ${projectName}`}
           >
-            <img
+            <ProgressiveImage
               key={images[index]}
               src={images[index]}
               alt=""
               className="finishing-gallery__image"
-              decoding="async"
+              fetchPriority="high"
+              loading="eager"
             />
             <div className="finishing-gallery__frame" aria-hidden />
 
@@ -132,12 +137,12 @@ export default function FinishingProjectGallery({
           </button>
 
           <div className="finishing-lightbox__inner" onClick={(e) => e.stopPropagation()}>
-            <img
+            <ProgressiveImage
               key={`lb-${images[index]}`}
               src={images[index]}
               alt=""
               className="finishing-lightbox__image"
-              decoding="async"
+              fetchPriority="high"
             />
 
             {hasMultiple && (

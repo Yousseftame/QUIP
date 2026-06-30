@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
+import ProgressiveImage from "@/components/ui/ProgressiveImage";
 import type { FinishingProject } from "@/types/finishing-project";
 
 type FinishingProjectCardProps = {
@@ -23,12 +24,11 @@ function FinishingProjectCard({ project, detailPath, index }: FinishingProjectCa
         <span className="finishing-row__num">{String(index).padStart(2, "0")}</span>
 
         <div className="finishing-row__media">
-          <img
+          <ProgressiveImage
             src={project.images[0]}
             alt=""
             className="finishing-row__image"
             loading="lazy"
-            decoding="async"
           />
         </div>
 

@@ -6852,3 +6852,12 @@ body.splash-active {
     text-wrap: balance !important;
   }
 }
+
+.progressive-image {
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progressive-image--loaded {
+  opacity: 1;
+}

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import HeroMenu from "@/components/sections/HeroMenu";
 import FooterSection from "@/components/sections/FooterSection";
 import { ContactModal } from "@/components/ui/ContactModal";
+import ProgressiveImage from "@/components/ui/ProgressiveImage";
+import { usePreloadImages } from "@/hooks/usePreloadImages";
 import type { SoftwareDepartment, SoftwareProject, SoftwareSolution } from "@/types/software-project";
 
 type SoftwareProjectDetailPageProps = {
@@ -49,6 +51,10 @@ export default function SoftwareProjectDetailPage({
 
   const listPath = `${backPath}#${department.id}`;
 
+  usePreloadImages(
+    [prevProject?.image, nextProject?.image].filter((src): src is string => Boolean(src)),
+  );
+
   return (
     <div className="software-detail">
       <header className="software-detail__header">
@@ -80,11 +86,11 @@ export default function SoftwareProjectDetailPage({
         <div
           className={`software-detail__hero-media software-detail__hero-media--${project.departmentId}`}
         >
-          <img
+          <ProgressiveImage
             src={project.image}
             alt=""
             className="software-detail__hero-image"
-            decoding="async"
+            fetchPriority="high"
             loading="eager"
           />
         </div>

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ProgressiveImage from "@/components/ui/ProgressiveImage";
 import type { PartnerLogo } from "@/data/client-logos";
 
 type ClientLogosSectionProps = {
@@ -51,12 +52,11 @@ export default function ClientLogosSection({
             >
               <div className="client-logos-section__card">
                 <div className="client-logos-section__logo-frame">
-                  <img
+                  <ProgressiveImage
                     src={logo.src}
                     alt={logo.alt}
                     className="client-logos-section__logo"
                     loading="lazy"
-                    decoding="async"
                   />
                 </div>
               </div>
