@@ -1,41 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import { FlipText } from "@/components/ui/flip-text";
-import project1 from "@/assets/1.avif";
-import project2 from "@/assets/2.avif";
-import project3 from "@/assets/3.avif";
-import project4 from "@/assets/4.avif";
+import { ICT_PROJECTS } from "@/data/ict-projects";
 
-const PROJECTS = [
-  {
-    code: "P112",
-    title: "36 social housing units in Eibar",
-    image: project1,
-    href: "#projects",
-  },
-  {
-    code: "P100",
-    title: "2 residential blocks in Sondika",
-    image: project2,
-    href: "#projects",
-  },
-  {
-    code: "P158",
-    title: "Galdakao care home",
-    image: project3,
-    href: "#projects",
-  },
-  {
-    code: "P148",
-    title: "54 residential units in Galdakao",
-    image: project4,
-    href: "#projects",
-  },
-];
-
-// Friction coefficient: 0.92 = smooth long glide, 0.85 = quicker stop
-const FRICTION = 0.92;
-const SNAP_CLASS = "projects-section__track--snapping";
+const ICT_LIST_PATH = "/projects/ict";
+const FEATURED_ICT_PROJECTS = ICT_PROJECTS.slice(0, 6);
 
 function NavArrow({ direction }: { direction: "left" | "right" }) {
   return (
@@ -53,30 +23,21 @@ function ProjectCard({
   code,
   title,
   image,
-  href,
-  isDragging,
+  to,
 }: {
   code: string;
   title: string;
   image: string;
-  href: string;
-  isDragging: boolean;
+  to: string;
 }) {
   return (
-    <a
-      href={href}
-      className="projects-card"
-      draggable={false}
-      onClick={(e) => {
-        if (isDragging) e.preventDefault();
-      }}
-    >
+    <Link to={to} className="projects-card">
       <img
         src={image}
         alt=""
         className="projects-card__image"
         loading="lazy"
-        draggable={false}
+        decoding="async"
       />
       <span className="projects-card__code">{code}</span>
       <div className="projects-card__overlay" aria-hidden />
@@ -92,7 +53,7 @@ function ProjectCard({
           </svg>
         </span>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -100,25 +61,7 @@ export default function ProjectsSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
-  const [isDragging, setIsDragging] = useState(false);
 
-  // All mutable drag state lives in one ref — zero React re-renders on every frame
-  const drag = useRef({
-    active: false,
-    moved: false,
-    startX: 0,
-    prevX: 0,
-    velocity: 0,
-    scrollOrigin: 0,
-    rafId: 0,
-    lastTime: 0,
-  });
-
-  // ── Snap class helpers ────────────────────────────────────────────────────
-  const enableSnap = () => trackRef.current?.classList.add(SNAP_CLASS);
-  const disableSnap = () => trackRef.current?.classList.remove(SNAP_CLASS);
-
-  // ── Scroll-arrow state ────────────────────────────────────────────────────
   const updateScrollState = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -131,10 +74,7 @@ export default function ProjectsSection() {
     const track = trackRef.current;
     if (!track) return;
 
-    // Start with snap enabled so arrow navigation snaps to cards
-    enableSnap();
     updateScrollState();
-
     track.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", updateScrollState);
     return () => {
@@ -146,103 +86,9 @@ export default function ProjectsSection() {
   const scrollByCard = (direction: -1 | 1) => {
     const track = trackRef.current;
     if (!track) return;
-    enableSnap(); // ensure snap is on for arrow navigation
     const card = track.querySelector<HTMLElement>(".projects-card");
     const amount = card?.offsetWidth ?? track.clientWidth / 3;
     track.scrollBy({ left: direction * amount, behavior: "smooth" });
-  };
-
-  // ── Inertia / momentum loop ───────────────────────────────────────────────
-  const startInertia = () => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const loop = () => {
-      const d = drag.current;
-      if (Math.abs(d.velocity) < 0.4) {
-        d.velocity = 0;
-        // Re-enable snap after momentum fully stops
-        enableSnap();
-        return;
-      }
-      d.velocity *= FRICTION;
-      track.scrollLeft += d.velocity;
-      d.rafId = requestAnimationFrame(loop);
-    };
-
-    cancelAnimationFrame(drag.current.rafId);
-    drag.current.rafId = requestAnimationFrame(loop);
-  };
-
-  // ── Pointer event handlers ────────────────────────────────────────────────
-  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-    const track = trackRef.current;
-    if (!track) return;
-
-    // Kill any running momentum
-    cancelAnimationFrame(drag.current.rafId);
-    disableSnap(); // free the track from snap during drag
-
-    const now = performance.now();
-    drag.current = {
-      active: true,
-      moved: false,
-      startX: e.clientX,
-      prevX: e.clientX,
-      velocity: 0,
-      scrollOrigin: track.scrollLeft,
-      rafId: 0,
-      lastTime: now,
-    };
-
-    track.setPointerCapture(e.pointerId);
-    track.style.cursor = "grabbing";
-  };
-
-  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const d = drag.current;
-    if (!d.active) return;
-    const track = trackRef.current;
-    if (!track) return;
-
-    const now = performance.now();
-    const dt = Math.max(now - d.lastTime, 1);
-
-    const dx = e.clientX - d.startX;
-
-    if (!d.moved && Math.abs(dx) > 4) {
-      d.moved = true;
-      setIsDragging(true);
-    }
-
-    if (d.moved) {
-      // Velocity in px/frame (16ms ≈ 60fps)
-      d.velocity = ((d.prevX - e.clientX) / dt) * 16;
-      track.scrollLeft = d.scrollOrigin - dx;
-    }
-
-    d.prevX = e.clientX;
-    d.lastTime = now;
-  };
-
-  const onPointerUp = (_e: React.PointerEvent<HTMLDivElement>) => {
-    const d = drag.current;
-    if (!d.active) return;
-    const track = trackRef.current;
-
-    d.active = false;
-    if (track) track.style.cursor = "";
-
-    if (d.moved) {
-      // Launch momentum — snap will re-enable once velocity drains
-      startInertia();
-    } else {
-      // No real drag — snap back on immediately
-      enableSnap();
-    }
-
-    requestAnimationFrame(() => setIsDragging(false));
   };
 
   return (
@@ -268,20 +114,14 @@ export default function ProjectsSection() {
       </div>
 
       <div className="projects-section__gallery">
-        <div
-          ref={trackRef}
-          className="projects-section__track"
-          style={{ cursor: "grab" }}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerLeave={onPointerUp}
-        >
-          {PROJECTS.map((project) => (
+        <div ref={trackRef} className="projects-section__track projects-section__track--snapping">
+          {FEATURED_ICT_PROJECTS.map((project) => (
             <ProjectCard
-              key={project.code}
-              {...project}
-              isDragging={isDragging}
+              key={project.id}
+              code={project.code}
+              title={project.name}
+              image={project.image}
+              to={`${ICT_LIST_PATH}/${project.id}`}
             />
           ))}
         </div>
@@ -309,12 +149,12 @@ export default function ProjectsSection() {
           </button>
         </div>
 
-        <a href="#projects" className="projects-section__all">
+        <Link to={ICT_LIST_PATH} className="projects-section__all">
           <span className="projects-section__all-label">All projects</span>
           <span className="projects-section__all-icon">
             <NavArrow direction="right" />
           </span>
-        </a>
+        </Link>
       </div>
     </section>
   );

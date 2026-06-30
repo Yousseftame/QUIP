@@ -5,6 +5,9 @@ import Home from "@/pages/Home/Home";
 import AboutUs from "@/pages/AboutUs/AboutUs";
 import IctProjectsPage from "@/pages/Projects/IctProjectsPage";
 import IctProjectDetailPage from "@/pages/Projects/IctProjectDetailPage";
+import FinishingProjectsPage from "@/pages/Projects/FinishingProjectsPage";
+import FinishingProjectDetailRoute from "@/pages/Projects/FinishingProjectDetailRoute";
+import SoftwareProjectsPage from "@/pages/Projects/SoftwareProjectsPage";
 
 export const routes = createBrowserRouter([
   {
@@ -17,6 +20,9 @@ export const routes = createBrowserRouter([
       { path: "about", element: <AboutUs /> },
       { path: "projects/ict", element: <IctProjectsPage /> },
       { path: "projects/ict/:projectId", element: <IctProjectDetailPage /> },
+      { path: "projects/finishing", element: <FinishingProjectsPage /> },
+      { path: "projects/finishing/:projectId", element: <FinishingProjectDetailRoute /> },
+      { path: "projects/software", element: <SoftwareProjectsPage /> },
     ],
   },
 
