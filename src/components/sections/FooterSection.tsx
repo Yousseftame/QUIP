@@ -65,8 +65,8 @@ export default function FooterSection() {
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@quipegy.com" className="site-footer__link">
-                  contact@quipegy.com
+                <a href="mailto:contact@quipinnovate.com" className="site-footer__link">
+                  contact@quipinnovate.com
                 </a>
               </li>
             </ul>

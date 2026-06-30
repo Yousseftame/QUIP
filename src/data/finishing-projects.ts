@@ -1,5 +1,13 @@
 import type { FinishingCategory, FinishingCategoryId, FinishingProject } from "@/types/finishing-project";
 
+import key1 from "@/assets/finishingimages/3dkey1.png";
+import key2 from "@/assets/finishingimages/3dkey2.png";
+import key3 from "@/assets/finishingimages/3dkey3.png";
+import key4 from "@/assets/finishingimages/3dkey4.png";
+import key5 from "@/assets/finishingimages/3dkey5.png";
+import key6 from "@/assets/finishingimages/3dkey6.png";
+import key7 from "@/assets/finishingimages/3dkey7.png";
+import key8 from "@/assets/finishingimages/3dkey8.png";
 import compound1 from "@/assets/finishingimages/3dCompound.png";
 import compound2 from "@/assets/finishingimages/3dCompound2.png";
 import compound3 from "@/assets/finishingimages/3dCompound3.png";
@@ -71,6 +79,15 @@ type Seed = FinishingProject;
 
 const SEEDS: Seed[] = [
   // 3D Projects
+  {
+    id: "fin-3d-keys-52",
+    categoryId: "3d-projects",
+    name: "Key / 52",
+    features: ["Residential", "East Cairo", "Luxury Living", "Smart Automation"],
+    description:
+      "Proudly launching the first in the sequel of THE KEYS EDITION in East Cairo — Keys I 52, where unparalleled exclusivity meets serene tranquility. Nestled in a peaceful setting with prime access to main roads and unmatched privacy, the project is crafted with exquisite materials and high-end finishes that epitomize luxury living. State-of-the-art automation elevates everyday life, complemented by intercom, access card, Face ID, and light sensors. Residents enjoy 24-hour concierge and security services, valet parking, house keeping, laundry, a roof gym, cold kitchen, and co-working space.",
+    images: [key1, key2, key3, key4, key5, key6, key7, key8],
+  },
   {
     id: "fin-3d-01",
     categoryId: "3d-projects",

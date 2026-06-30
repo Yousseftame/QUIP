@@ -16,8 +16,8 @@ const CONTACT_ITEMS = [
   {
     id: "email",
     label: "Email",
-    value: "contact@quipegy.com",
-    href: "mailto:contact@quipegy.com",
+    value: "contact@quipinnovate.com",
+    href: "mailto:contact@quipinnovate.com",
   },
 ];
 
