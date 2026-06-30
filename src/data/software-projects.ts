@@ -42,6 +42,39 @@ type Seed = Omit<SoftwareProject, "departmentId"> & { departmentId: SoftwareDepa
 
 const SEEDS: Seed[] = [
   {
+    id: "sw-aone",
+    departmentId: "web",
+    platformBadge: "AI",
+    title: "Aone",
+    subtitle: "AI Agent SaaS Platform — Under Development",
+    image: aoneImg,
+    demoUrl: "https://aone.thinkstudio.ai/",
+    description:
+      "Aone is a large-scale SaaS platform enabling businesses to create and deploy custom AI agents trained on their own data. Built for customer support, sales, onboarding, and internal knowledge management, the platform supports 95+ languages, integrates with major LLMs (OpenAI, Google, Anthropic), and connects with tools like Zendesk, Intercom, Salesforce, WhatsApp, Shopify, and more.",
+    solutions: [
+      {
+        title: "Custom AI Agents",
+        description:
+          "Empowers teams to build and deploy agents trained on proprietary business data for support, sales, onboarding, and internal knowledge workflows.",
+      },
+      {
+        title: "Multi-LLM & Integrations",
+        description:
+          "Supports 95+ languages and connects with leading LLM providers alongside Zendesk, Intercom, Salesforce, WhatsApp, Shopify, and other core business tools.",
+      },
+      {
+        title: "Configurable Dashboard & AI Actions",
+        description:
+          "Delivers a flexible control center with AI Actions that trigger real operations through APIs — beyond chat into executable business workflows.",
+      },
+      {
+        title: "Multi-Channel Deployment",
+        description:
+          "Deploys agents across channels with automated human handoff workflows, ensuring seamless escalation when live support is required.",
+      },
+    ],
+  },
+  {
     id: "sw-has-mea",
     departmentId: "web",
     title: "HAS-MEA",
@@ -149,38 +182,6 @@ const SEEDS: Seed[] = [
         title: "Modern Web Stack",
         description:
           "Leveraged a high-performance React/Next.js frontend to deliver a seamless and simplified contracting user experience.",
-      },
-    ],
-  },
-  {
-    id: "sw-aone",
-    departmentId: "web",
-    platformBadge: "AI",
-    title: "Aone",
-    subtitle: "AI Agent SaaS Platform — Under Development",
-    image: aoneImg,
-    description:
-      "Aone is a large-scale SaaS platform enabling businesses to create and deploy custom AI agents trained on their own data. Built for customer support, sales, onboarding, and internal knowledge management, the platform supports 95+ languages, integrates with major LLMs (OpenAI, Google, Anthropic), and connects with tools like Zendesk, Intercom, Salesforce, WhatsApp, Shopify, and more.",
-    solutions: [
-      {
-        title: "Custom AI Agents",
-        description:
-          "Empowers teams to build and deploy agents trained on proprietary business data for support, sales, onboarding, and internal knowledge workflows.",
-      },
-      {
-        title: "Multi-LLM & Integrations",
-        description:
-          "Supports 95+ languages and connects with leading LLM providers alongside Zendesk, Intercom, Salesforce, WhatsApp, Shopify, and other core business tools.",
-      },
-      {
-        title: "Configurable Dashboard & AI Actions",
-        description:
-          "Delivers a flexible control center with AI Actions that trigger real operations through APIs — beyond chat into executable business workflows.",
-      },
-      {
-        title: "Multi-Channel Deployment",
-        description:
-          "Deploys agents across channels with automated human handoff workflows, ensuring seamless escalation when live support is required.",
       },
     ],
   },

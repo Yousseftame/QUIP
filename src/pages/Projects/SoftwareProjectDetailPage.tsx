@@ -79,7 +79,7 @@ export default function SoftwareProjectDetailPage({
       <div className="software-detail__topbar">
         <Link to={listPath} className="software-detail__back">
           <ArrowLeft size={16} strokeWidth={2} />
-          All Software Projects
+          All Software & AI Projects
         </Link>
       </div>
 

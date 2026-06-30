@@ -99,7 +99,7 @@ export default function SoftwareProjectsPage() {
 
           <h1 className="software-page__title font-heading">
             <DiaTextReveal
-              text="Software"
+              text="Software & AI"
               textColor="#f5f3ee"
               colors={["#f5f3ee"]}
               className="software-page__title-line"
@@ -109,7 +109,7 @@ export default function SoftwareProjectsPage() {
               once
             />
             <DiaTextReveal
-              text="& Digital"
+              text="Digital"
               textColor="#FF5949"
               colors={["#FF5949"]}
               className="software-page__title-line"

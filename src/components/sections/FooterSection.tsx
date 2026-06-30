@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NAV_LINKS = [
   { label: "About Us", to: "/about" },
   { label: "ICT Infrastructure", to: "/projects/ict" },
-  { label: "Software", to: "/projects/software" },
+  { label: "Software & AI", to: "/projects/software" },
   { label: "Finishing & Construction", to: "/projects/finishing" },
 ];
 

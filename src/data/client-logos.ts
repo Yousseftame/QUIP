@@ -55,7 +55,7 @@ export const PARTNER_SECTIONS: PartnerSection[] = [
   },
   {
     id: "software-partners",
-    eyebrow: "Software",
+    eyebrow: "Software & AI",
     title: "Where Ambition Meets Execution in Code",
     description:
       "From fast-growing startups to established organizations, our software partners choose QUIP to deliver platforms and digital products that are robust, intuitive, and built to evolve with their business.",

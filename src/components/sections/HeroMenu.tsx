@@ -17,7 +17,7 @@ const NAV_LINKS = [
     expandable: true,
     subLinks: [
       { id: "ict", label: "ICT infrastructure", href: "/projects/ict" },
-      { id: "software", label: "Software", href: "/projects/software" },
+      { id: "software", label: "Software & AI", href: "/projects/software" },
       { id: "finishing", label: "Finishing & Construction", href: "/projects/finishing" }
     ]
   },

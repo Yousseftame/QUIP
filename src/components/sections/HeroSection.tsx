@@ -79,7 +79,7 @@ export default function HeroSection() {
                 <ul className="hero-services__list">
                   {[
                     "ICT infrastructure",
-                    "Software",
+                    "Software & AI",
                     "Finishing & Construction",
                   ].map((service, index) => (
                     <li key={service} className="hero-services__item">
