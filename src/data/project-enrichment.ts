@@ -50,45 +50,6 @@ const SCOPE_BY_CATEGORY: Record<string, string[]> = {
   ],
 };
 
-const DELIVERABLES_BY_CATEGORY: Record<string, string[]> = {
-  "Structured Cabling": [
-    "Certified test reports",
-    "As-built drawings and port schedules",
-    "Cable labeling and pathway documentation",
-    "Warranty and maintenance guidelines",
-  ],
-  "Network Infrastructure": [
-    "Network topology and IP plan",
-    "Configuration backups and runbooks",
-    "Performance baseline report",
-    "Operations and support documentation",
-  ],
-  "Security Systems": [
-    "System architecture and camera layout",
-    "Access level matrix and audit setup",
-    "Commissioning and acceptance report",
-    "Operator manuals and training records",
-  ],
-  "Data Center": [
-    "Infrastructure layout drawings",
-    "Patch schedules and port mapping",
-    "Acceptance test documentation",
-    "Operations and maintenance plan",
-  ],
-  "Wireless & IoT": [
-    "Heat maps and coverage report",
-    "Controller and SSID configuration",
-    "Security policy documentation",
-    "Post-deployment optimization summary",
-  ],
-  "AV Integration": [
-    "Signal flow and rack elevation drawings",
-    "System commissioning checklist",
-    "Control interface documentation",
-    "End-user training and handover pack",
-  ],
-};
-
 const DEFAULT_SCOPE = [
   "Requirements review and engineering design",
   "Procurement and material coordination",
@@ -96,16 +57,9 @@ const DEFAULT_SCOPE = [
   "Testing, commissioning, and handover",
 ];
 
-const DEFAULT_DELIVERABLES = [
-  "Project documentation and drawings",
-  "Testing and commissioning reports",
-  "As-built records and asset register",
-  "Training and warranty support",
-];
-
 type ProjectSeed = Omit<
   Project,
-  "code" | "image" | "overview" | "location" | "year" | "client" | "scope" | "deliverables"
+  "code" | "image" | "overview" | "location" | "year" | "client" | "scope"
 >;
 
 export function enrichProject(
@@ -115,7 +69,6 @@ export function enrichProject(
   codePrefix: string,
 ): Project {
   const scope = SCOPE_BY_CATEGORY[entry.category] ?? DEFAULT_SCOPE;
-  const deliverables = DELIVERABLES_BY_CATEGORY[entry.category] ?? DEFAULT_DELIVERABLES;
 
   return {
     ...entry,
@@ -125,7 +78,6 @@ export function enrichProject(
     year: String(2016 + (index % 10)),
     client: "Confidential — Enterprise Client",
     scope,
-    deliverables,
     overview: `${entry.description} QUIP delivered the full project lifecycle — from engineering design and procurement through installation, testing, commissioning, and structured handover to the client's operations team.`,
   };
 }

@@ -1,10 +1,18 @@
-export type SoftwareDepartmentId = "applications" | "websites";
+export type SoftwareDepartmentId = "web" | "mobile";
+
+export type SoftwareSolution = {
+  title: string;
+  description: string;
+};
 
 export type SoftwareProject = {
   id: string;
   title: string;
+  subtitle?: string;
   description: string;
-  demoUrl: string;
+  solutions: SoftwareSolution[];
+  image: string;
+  demoUrl?: string;
   departmentId: SoftwareDepartmentId;
 };
 

@@ -6,6 +6,8 @@ import quipBranding01 from "@/assets/quip-branding-01.png";
 import HeroMenu from "@/components/sections/HeroMenu";
 import { ContactModal } from "@/components/ui/ContactModal";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import ClientLogosSection from "@/components/sections/ClientLogosSection";
+import { PARTNER_SECTIONS } from "@/data/client-logos";
 import FooterSection from "@/components/sections/FooterSection";
 
 const PILLARS = [
@@ -238,6 +240,10 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      {PARTNER_SECTIONS.map((section) => (
+        <ClientLogosSection key={section.id} {...section} />
+      ))}
 
       <section className="bg-[#f5f3ee] py-16 overflow-hidden relative">
         {/* Scrolling ticker */}

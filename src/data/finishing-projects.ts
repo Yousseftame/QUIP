@@ -1,10 +1,44 @@
 import type { FinishingCategory, FinishingCategoryId, FinishingProject } from "@/types/finishing-project";
-import project1 from "@/assets/1.avif";
-import project2 from "@/assets/2.avif";
-import project3 from "@/assets/3.avif";
-import project4 from "@/assets/4.avif";
 
-const IMAGES = [project1, project2, project3, project4];
+import compound1 from "@/assets/finishingimages/3dCompound.png";
+import compound2 from "@/assets/finishingimages/3dCompound2.png";
+import compound3 from "@/assets/finishingimages/3dCompound3.png";
+import compound4 from "@/assets/finishingimages/3dCompound4.png";
+import compound5 from "@/assets/finishingimages/3dCompound5.png";
+import mivida1 from "@/assets/finishingimages/3dmivida1.png";
+import mivida2 from "@/assets/finishingimages/3dmivida2.png";
+import mivida3 from "@/assets/finishingimages/3dmivida3.png";
+import hayah3d1 from "@/assets/finishingimages/3dhayah1.png";
+import ds1 from "@/assets/finishingimages/3dDS1.png";
+import ds2 from "@/assets/finishingimages/3dDS2.png";
+import ds3 from "@/assets/finishingimages/3dDS3.png";
+import imce2023_1 from "@/assets/finishingimages/3dIMCE1-2023.png";
+import imce2023_2 from "@/assets/finishingimages/3dIMCE2-2023.png";
+import imce2023_3 from "@/assets/finishingimages/3dIMCE3-2023.png";
+import imce2024_1 from "@/assets/finishingimages/3dIMCE1-2024.png";
+import imce2024_2 from "@/assets/finishingimages/3dIMCE2-2024.png";
+import imce2024_3 from "@/assets/finishingimages/3dIMCE3-2024.png";
+import think3d1 from "@/assets/finishingimages/3dthink1.png";
+import think3d2 from "@/assets/finishingimages/3dthink2.png";
+import media3d1 from "@/assets/finishingimages/3dmedia1.png";
+import media3d2 from "@/assets/finishingimages/3dmedia2.png";
+import tact3d1 from "@/assets/finishingimages/3dtact1.png";
+import tact3d2 from "@/assets/finishingimages/3dtact2.png";
+
+import onImce1 from "@/assets/finishingimages/ONimce1.png";
+import onImce2 from "@/assets/finishingimages/ONimce2.png";
+import onImce3 from "@/assets/finishingimages/ONimce3.png";
+import onHayah1 from "@/assets/finishingimages/ONhayah1.png";
+import onHayah2 from "@/assets/finishingimages/ONhayah2.png";
+import onThink1 from "@/assets/finishingimages/ONthink1.png";
+import onThink2 from "@/assets/finishingimages/ONthink2.png";
+import onMedia1 from "@/assets/finishingimages/ONmedia1.png";
+import onMedia2 from "@/assets/finishingimages/ONmedia2.png";
+import onTact1 from "@/assets/finishingimages/ONtact1.png";
+import onTact2 from "@/assets/finishingimages/ONtact2.png";
+
+import transCaravan1 from "@/assets/finishingimages/TRANScaravanhaya1.png";
+import transCaravan2 from "@/assets/finishingimages/TRANScaravanhaya2.png";
 
 export const FINISHING_CATEGORIES: FinishingCategory[] = [
   {
@@ -33,186 +67,184 @@ export const FINISHING_CATEGORIES: FinishingCategory[] = [
   },
 ];
 
-type Seed = Omit<FinishingProject, "images">;
+type Seed = FinishingProject;
 
 const SEEDS: Seed[] = [
   // 3D Projects
   {
     id: "fin-3d-01",
     categoryId: "3d-projects",
-    name: "Corporate HQ Visualisation",
-    features: ["BIM Level 2", "Photoreal renders", "Client walkthrough"],
+    name: "Compound Apartment",
+    features: ["Residential"],
     description:
-      "Full building visualisation for a multi-tower corporate campus — exterior massing, lobby interiors, and MEP coordination views used through design development and stakeholder approvals.",
+      "This modern apartment exemplifies our commitment to creating elegant and functional living spaces. We seamlessly integrated clean lines, natural light, and a neutral color palette with vibrant accents to achieve a sophisticated yet inviting atmosphere.",
+    images: [compound1, compound2, compound3, compound4, compound5],
   },
   {
     id: "fin-3d-02",
     categoryId: "3d-projects",
-    name: "Retail Flagship Concept",
-    features: ["Interior staging", "Lighting studies", "Material boards"],
+    name: "Mivida Living Space",
+    features: ["Residential", "Interior"],
     description:
-      "High-end retail concept with detailed material specification and lighting scenarios, enabling the client to sign off finishes before procurement.",
+      "In keeping with the Mivida lifestyle, this modern bathroom design emphasizes comfort and relaxation. We incorporated natural light, soothing color palettes, and luxurious textures to create a spa-like atmosphere.",
+    images: [mivida1, mivida2, mivida3],
   },
   {
     id: "fin-3d-03",
     categoryId: "3d-projects",
-    name: "Hospital Wing Modelling",
-    features: ["Clinical layouts", "Clash detection", "As-built overlay"],
+    name: "Hayah Karima & Ketabak",
+    features: ["Public", "Community"],
     description:
-      "Medical facility wing modelled for coordination between architectural, mechanical, and electrical disciplines prior to site mobilisation.",
+      "A community-focused 3D visualisation for the Hayah Karima & Ketabak initiative — designed to support public engagement and reflect the programme's social impact across Egyptian communities.",
+    images: [hayah3d1],
   },
   {
     id: "fin-3d-04",
     categoryId: "3d-projects",
-    name: "Mixed-Use Tower Envelope",
-    features: ["Façade options", "Solar analysis", "VR presentation"],
+    name: "DS+ Roof",
+    features: ["Commercial", "Rooftop"],
     description:
-      "Envelope and podium study for a mixed-use tower, comparing cladding options and presenting immersive review sessions to the development team.",
+      "This rooftop design reflects the dynamic and creative spirit of DS+. We incorporated bold colors, unique textures, and playful elements to create a space that is both inspiring and representative of the agency's brand identity.",
+    images: [ds1, ds2, ds3],
   },
   {
     id: "fin-3d-05",
     categoryId: "3d-projects",
-    name: "Industrial Plant Layout",
-    features: ["Process flow", "Equipment placement", "Safety zoning"],
+    name: "IMCE Expo 2023 Ebda Booth",
+    features: ["Exhibition", "Brand"],
     description:
-      "3D layout of production halls and utility zones, supporting equipment procurement and contractor tender packages.",
+      "Designed for maximum impact at IMCE, the Ebda Booth featured a functional industrial aesthetic. We optimized space with clean lines and open layouts, creating a dynamic and engaging environment for visitors to explore Ebda's latest innovations.",
+    images: [imce2023_1, imce2023_2, imce2023_3],
   },
   {
     id: "fin-3d-06",
     categoryId: "3d-projects",
-    name: "Residential Compound Masterplan",
-    features: ["Landscape integration", "Phase planning", "Sales gallery pack"],
+    name: "IMCE Expo 2024 Ebda Booth",
+    features: ["Exhibition", "Brand"],
     description:
-      "Masterplan visuals for a gated residential community — phase sequencing, amenity areas, and marketing assets for off-plan sales.",
+      "Building upon the success of our 2023 booth, we further refined our industrial design approach for Ebda's presence at IMCE 2024. We incorporated new interactive elements and cutting-edge technology to showcase Ebda's continued evolution as a leader in manufacturing innovation.",
+    images: [imce2024_1, imce2024_2, imce2024_3],
   },
   {
     id: "fin-3d-07",
     categoryId: "3d-projects",
-    name: "Heritage Restoration Study",
-    features: ["Historic survey", "Restoration options", "Authority submissions"],
+    name: "Administrative Villa Think",
+    features: ["Commercial", "Office"],
     description:
-      "Documented existing conditions and proposed restoration interventions for a heritage facade, supporting conservation board review.",
+      "We transformed an administrative villa into a modern and inspiring workspace for Think. The design prioritizes collaboration and creativity, with open-plan layouts, flexible workspaces, and designated areas for brainstorming and teamwork.",
+    images: [think3d1, think3d2],
+  },
+  {
+    id: "fin-3d-08",
+    categoryId: "3d-projects",
+    name: "Administrative Villa Media-Magnet",
+    features: ["Commercial", "Office"],
+    description:
+      "We created a modern and inspiring workspace for Media Magnet that prioritizes both comfort and functionality. The design incorporates comfortable seating, natural light, and a focus on employee well-being, creating a space where creativity can flourish.",
+    images: [media3d1, media3d2],
+  },
+  {
+    id: "fin-3d-09",
+    categoryId: "3d-projects",
+    name: "Administrative Villa Tact Innovations",
+    features: ["Commercial", "Flagship"],
+    description:
+      "As a leading interior design and engineering firm, Tact Innovations — our site — required a workspace that reflected their innovative spirit. We designed a modern style for our administrative site that is both inspiring and functional, showcasing our expertise and creativity to clients and employees alike.",
+    images: [tact3d1, tact3d2],
   },
   // On Ground
   {
     id: "fin-og-01",
     categoryId: "on-ground",
-    name: "Bank Headquarters Fit-Out",
-    features: ["Raised floors", "Acoustic ceilings", "Trading floor MEP"],
+    name: "IMCE Expo 2023 Ebda Booth",
+    features: [
+      "Exhibition",
+      "Live Build",
+      "Booth Style: Industrial",
+      "Location: New Cairo",
+      "Year: 2023",
+      "Status: Delivered",
+    ],
     description:
-      "Complete interior fit-out of a banking headquarters across 12 floors — partitions, finishes, and coordinated MEP above-ceiling works.",
+      "Implemented for maximum impact at IMCE, the Ebda Booth featured a functional industrial aesthetic. We optimized space with clean lines and open layouts, creating a dynamic and engaging environment for visitors to explore Ebda's latest innovations.",
+    images: [onImce1, onImce2, onImce3],
   },
   {
     id: "fin-og-02",
     categoryId: "on-ground",
-    name: "Luxury Hotel Guest Floors",
-    features: ["Guest rooms", "Corridor finishes", "BOH upgrades"],
+    name: "Hayah Karima",
+    features: [
+      "Public",
+      "Community Initiative",
+      "Sector: Workspace",
+      "Style: Modern Office",
+      "Status: Delivered",
+    ],
     description:
-      "Guest floor renovation programme delivered in phased zones to maintain hotel operations, including FF&E coordination and handover inspections.",
+      "On-ground delivery of a modern workspace for the Hayah Karima community initiative — built to support public programmes with a functional, contemporary office environment.",
+    images: [onHayah1, onHayah2],
   },
   {
     id: "fin-og-03",
     categoryId: "on-ground",
-    name: "Medical Clinic Shell & Core",
-    features: ["Clinical fit-out", "Clean room prep", "Medical gas rough-in"],
+    name: "Administrative Villa Think",
+    features: [
+      "Commercial",
+      "Office Interior",
+      "Type: Administrative Villa",
+      "Style: Modern Office",
+      "Location: New Cairo",
+      "Status: Delivered",
+    ],
     description:
-      "Specialist clinic build-out with infection-control finishes, medical gas infrastructure, and compliance documentation for licensing.",
+      "We transformed an administrative villa into a modern and inspiring workspace for Think. The design prioritizes collaboration and creativity, with open-plan layouts, flexible workspaces, and designated areas for brainstorming and teamwork.",
+    images: [onThink1, onThink2],
   },
   {
     id: "fin-og-04",
     categoryId: "on-ground",
-    name: "Showroom & Service Centre",
-    features: ["Display areas", "Workshop bays", "Brand standards"],
+    name: "Administrative Villa Media-Magnet",
+    features: [
+      "Commercial",
+      "Creative Office",
+      "Type: Workspace",
+      "Style: Modern Office",
+      "Location: New Cairo",
+      "Status: Delivered",
+    ],
     description:
-      "Automotive showroom and service centre delivered to manufacturer brand guidelines — flooring systems, lighting, and customer journey zones.",
+      "We created a modern and inspiring workspace for Media Magnet that prioritizes both comfort and functionality. The design incorporates comfortable seating, natural light, and a focus on employee well-being, creating a space where creativity can flourish.",
+    images: [onMedia1, onMedia2],
   },
   {
     id: "fin-og-05",
     categoryId: "on-ground",
-    name: "Educational Campus Block",
-    features: ["Classrooms", "Labs", "Administration wing"],
+    name: "Administrative Villa Tact Innovations",
+    features: [
+      "Commercial",
+      "Flagship HQ",
+      "Type: Workspace",
+      "Style: Modern Office",
+      "Location: New Cairo",
+      "Status: Delivered",
+    ],
     description:
-      "New academic block with laboratories requiring enhanced MEP, durable finishes, and acoustic treatment across teaching spaces.",
-  },
-  {
-    id: "fin-og-06",
-    categoryId: "on-ground",
-    name: "Warehouse Office Annex",
-    features: ["Steel structure", "Industrial flooring", "Loading integration"],
-    description:
-      "Office annex attached to an operational warehouse — fire separation, industrial-grade finishes, and integration with existing logistics flows.",
-  },
-  {
-    id: "fin-og-07",
-    categoryId: "on-ground",
-    name: "Residential Tower Common Areas",
-    features: ["Lobbies", "Amenity floors", "Parking levels"],
-    description:
-      "Common-area finishing for a residential tower including double-height lobby, amenity deck, and basement parking treatment.",
+      "As a leading interior design and engineering firm, Tact Innovations — our site — required a workspace that reflected their innovative spirit. We designed a modern style for our administrative site that is both inspiring and functional, showcasing our expertise and creativity to clients and employees alike.",
+    images: [onTact1, onTact2],
   },
   // Transportation & Supplies
   {
     id: "fin-tr-01",
     categoryId: "transportation",
-    name: "Site Equipment Mobilisation",
-    features: ["Crane logistics", "Plant scheduling", "Site access planning"],
+    name: "Hayah Karima Caravans",
+    features: ["Transportation", "Social Initiative", "Location: Different Cities"],
     description:
-      "Coordinated delivery and positioning of tower cranes, hoists, and temporary power for a high-rise construction programme.",
-  },
-  {
-    id: "fin-tr-02",
-    categoryId: "transportation",
-    name: "Finishing Materials Supply",
-    features: ["Imported stone", "Custom joinery", "Just-in-time delivery"],
-    description:
-      "Procurement and phased delivery of imported marble, joinery packages, and specialist finishes aligned to site installation schedules.",
-  },
-  {
-    id: "fin-tr-03",
-    categoryId: "transportation",
-    name: "Cross-Border Fleet Coordination",
-    features: ["Customs clearance", "Multi-site routing", "GPS tracking"],
-    description:
-      "Fleet management for equipment and materials moving between Egypt and Gulf sites, with customs documentation and live tracking.",
-  },
-  {
-    id: "fin-tr-04",
-    categoryId: "transportation",
-    name: "MEP Bulk Procurement",
-    features: ["Vendor consolidation", "Warehouse staging", "Batch releases"],
-    description:
-      "Centralised procurement of MEP commodities with regional staging warehouse and batch releases matched to floor-by-floor progress.",
-  },
-  {
-    id: "fin-tr-05",
-    categoryId: "transportation",
-    name: "Modular Unit Delivery",
-    features: ["Oversized loads", "Route surveys", "Night convoys"],
-    description:
-      "Transport planning and escort coordination for oversized modular units from fabrication yard to remote industrial site.",
-  },
-  {
-    id: "fin-tr-06",
-    categoryId: "transportation",
-    name: "Site Consumables Programme",
-    features: ["Inventory control", "Weekly replenishment", "Cost tracking"],
-    description:
-      "Managed supply of site consumables — tools, PPE, and small materials — with weekly replenishment cycles and project cost reporting.",
+      "We proudly played a role in the Hayah Karima initiative by supplying caravans across numerous Egyptian cities. Our commitment to social responsibility drives us to provide high-quality, sustainable solutions that improve the lives of communities in need.",
+    images: [transCaravan1, transCaravan2],
   },
 ];
 
-function pickImages(index: number, count = 4): string[] {
-  const imgs: string[] = [];
-  for (let i = 0; i < count; i++) {
-    imgs.push(IMAGES[(index + i) % IMAGES.length]);
-  }
-  return imgs;
-}
-
-export const FINISHING_PROJECTS: FinishingProject[] = SEEDS.map((seed, index) => ({
-  ...seed,
-  images: pickImages(index, 3 + (index % 2)),
-}));
+export const FINISHING_PROJECTS: FinishingProject[] = SEEDS;
 
 export function getFinishingProjectsByCategory(categoryId: FinishingCategoryId) {
   return FINISHING_PROJECTS.filter((p) => p.categoryId === categoryId);

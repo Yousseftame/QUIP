@@ -10,7 +10,6 @@ export type Project = {
   year: string;
   client: string;
   scope: string[];
-  deliverables: string[];
 };
 
 export type ProjectCategory = {

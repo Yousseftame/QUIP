@@ -121,8 +121,8 @@ export default function SoftwareProjectsPage() {
           </h1>
 
           <p className="software-page__subtitle">
-            Applications and websites we build — browse by department, open a live demo when
-            available.
+            Web platforms and mobile applications we build — browse by platform and explore each
+            project in detail.
           </p>
         </div>
       </section>

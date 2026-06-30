@@ -1,280 +1,588 @@
 import type { Project } from "@/types/project";
-import project1 from "@/assets/1.avif";
-import project2 from "@/assets/2.avif";
-import project3 from "@/assets/3.avif";
-import project4 from "@/assets/4.avif";
-import { enrichProject, findProjectById, findProjectIndex } from "@/data/project-enrichment";
+import { findProjectById, findProjectIndex } from "@/data/project-enrichment";
+import abbImg from "@/assets/Our Work – QUIP/abb.jpg";
+import alFuttaimImg from "@/assets/Our Work – QUIP/Al Futtaim (CFC).png";
+import alexBankImg from "@/assets/Our Work – QUIP/alex bank.jpg";
+import cairoBankImg from "@/assets/Our Work – QUIP/Cairo Bank.jpg";
+import creditAgricoleImg from "@/assets/Our Work – QUIP/Credit Agricole.jpg";
+import egpcImg from "@/assets/Our Work – QUIP/EGPC.jpeg";
+import emaImg from "@/assets/Our Work – QUIP/EMA.jpg";
+import exxonMobilImg from "@/assets/Our Work – QUIP/Exxon Mobil.jpg";
+import gaebImg from "@/assets/Our Work – QUIP/GAEB.jpg";
+import geSecurityImg from "@/assets/Our Work – QUIP/GE SECURITY.jpg";
+import gmImg from "@/assets/Our Work – QUIP/gm.webp";
+import gupcoImg from "@/assets/Our Work – QUIP/Gupco.webp";
+import hondaImg from "@/assets/Our Work – QUIP/HONDA.jpg";
+import hsbcImg from "@/assets/Our Work – QUIP/HSBC.jpg";
+import ibmImg from "@/assets/Our Work – QUIP/ibm.jpg";
+import itidaImg from "@/assets/Our Work – QUIP/ITIDA.jpg";
+import itsImg from "@/assets/Our Work – QUIP/its.jpg";
+import mantracImg from "@/assets/Our Work – QUIP/MANTRAC.jpg";
+import mobinilImg from "@/assets/Our Work – QUIP/mobinil.jpg";
+import nationalBankOfEgyptImg from "@/assets/Our Work – QUIP/national bank of egypt.jpeg";
+import nationalBankImg from "@/assets/Our Work – QUIP/National Bank.jpg";
+import novartisImg from "@/assets/Our Work – QUIP/NOVARTIS.jpg";
+import pearsonEducationImg from "@/assets/Our Work – QUIP/Pearson Education.jpg";
+import quintilesImg from "@/assets/Our Work – QUIP/Quintiles.jpg";
+import rotanaImg from "@/assets/Our Work – QUIP/ROTANA.jpg";
+import sanofiImg from "@/assets/Our Work – QUIP/SANOFI.jpg";
+import toyotaImg from "@/assets/Our Work – QUIP/TOYOTA.jpg";
+import unitedBankImg from "@/assets/Our Work – QUIP/united bank.jpg";
+import weImg from "@/assets/Our Work – QUIP/we.jpg";
+import westernGecoImg from "@/assets/Our Work – QUIP/WesternGeco.jpg";
+import xceedImg from "@/assets/Our Work – QUIP/Xceed.jpg";
 
-const IMAGES = [project1, project2, project3, project4];
+const ICT_PROJECT_IMAGES: Record<string, string> = {
+  "ict-001": quintilesImg,
+  "ict-002": gaebImg,
+  "ict-003": alFuttaimImg,
+  "ict-004": pearsonEducationImg,
+  "ict-005": alexBankImg,
+  "ict-006": gmImg,
+  "ict-007": itsImg,
+  "ict-008": weImg,
+  "ict-009": exxonMobilImg,
+  "ict-010": unitedBankImg,
+  "ict-011": nationalBankOfEgyptImg,
+  "ict-012": cairoBankImg,
+  "ict-013": rotanaImg,
+  "ict-014": itidaImg,
+  "ict-015": geSecurityImg,
+  "ict-016": hondaImg,
+  "ict-017": toyotaImg,
+  "ict-018": sanofiImg,
+  "ict-019": novartisImg,
+  "ict-020": hsbcImg,
+  "ict-021": ibmImg,
+  "ict-022": mobinilImg,
+  "ict-023": mantracImg,
+  "ict-024": westernGecoImg,
+  "ict-025": gupcoImg,
+  "ict-026": egpcImg,
+  "ict-027": creditAgricoleImg,
+  "ict-028": xceedImg,
+  "ict-029": emaImg,
+  "ict-030": nationalBankImg,
+  "ict-031": sanofiImg,
+  "ict-032": abbImg,
+};
 
 const ICT_CATEGORIES = [
-  "Structured Cabling",
-  "Network Infrastructure",
-  "Security Systems",
-  "Data Center",
-  "Wireless & IoT",
-  "AV Integration",
+  "Networks",
+  "Information Technology",
+  "General Contracting",
+  "Light Current",
+  "Telecommunication",
 ];
 
-type IctProjectSeed = Pick<Project, "id" | "name" | "category" | "description">;
+type IctProjectSeed = Pick<
+  Project,
+  "id" | "name" | "category" | "description" | "overview" | "client" | "scope" | "location"
+>;
+
+function buildIctProject(entry: IctProjectSeed, index: number): Project {
+  return {
+    ...entry,
+    code: `ICT · ${String(index + 1).padStart(2, "0")}`,
+    image: ICT_PROJECT_IMAGES[entry.id],
+    year: "—",
+  };
+}
 
 const ICT_PROJECT_ENTRIES: IctProjectSeed[] = [
   {
     id: "ict-001",
-    name: "Corporate HQ Network Backbone",
-    category: "Network Infrastructure",
+    name: "Quintiles",
+    category: "Networks",
+    client: "Quintiles",
+    location: "Egypt",
     description:
-      "End-to-end LAN/WAN design and deployment for a multi-floor corporate headquarters, including core switching, redundancy, and structured documentation.",
+      "Network infrastructure with integrated access control and CCTV for Quintiles operations.",
+    overview:
+      "QUIP delivered structured network infrastructure for Quintiles, integrating physical security systems including access control and CCTV into a unified low-current package.",
+    scope: ["Networks", "Access Control", "CCTV"],
   },
   {
     id: "ict-002",
-    name: "Hospital Security & Access Control",
-    category: "Security Systems",
+    name: "GAEB",
+    category: "Networks",
+    client: "GAEB",
+    location: "Egypt",
     description:
-      "Integrated CCTV, access control, and perimeter monitoring across a regional medical facility with centralized monitoring and audit trails.",
+      "Network infrastructure with access control and CCTV for GAEB facilities.",
+    overview:
+      "Complete network and security systems deployment for GAEB, covering access control and CCTV integration across the client's operational environment.",
+    scope: ["Networks", "Access Control", "CCTV"],
   },
   {
     id: "ict-003",
-    name: "Tier-III Data Center Cabling",
-    category: "Data Center",
-    description:
-      "High-density fiber and copper infrastructure for a Tier-III facility, with labeled pathways, testing certification, and as-built deliverables.",
+    name: "Al Futtaim (CFC)",
+    category: "Networks",
+    client: "Al Futtaim (CFC)",
+    location: "Egypt",
+    description: "Network infrastructure and access control for Al Futtaim CFC.",
+    overview:
+      "Network infrastructure and access control system design, installation, and commissioning for Al Futtaim (CFC) facilities.",
+    scope: ["Networks", "Access Control"],
   },
   {
     id: "ict-004",
-    name: "Campus-Wide Wi-Fi 6 Deployment",
-    category: "Wireless & IoT",
+    name: "Pearson Education",
+    category: "Networks",
+    client: "Pearson Education",
+    location: "Egypt",
     description:
-      "Wireless survey, AP placement, and controller configuration across a university campus serving thousands of concurrent users.",
+      "Network infrastructure with access control and CCTV for Pearson Education.",
+    overview:
+      "Integrated network, access control, and CCTV systems for Pearson Education, supporting secure operations and monitored premises.",
+    scope: ["Networks", "Access Control", "CCTV"],
   },
   {
     id: "ict-005",
-    name: "Retail Chain POS Network",
-    category: "Network Infrastructure",
+    name: "Alex Bank",
+    category: "Networks",
+    client: "Alex Bank",
+    location: "Egypt",
     description:
-      "Standardized store networking rollout for a retail chain, including VLAN segmentation, firewall policies, and remote branch monitoring.",
+      "Branch network and access control across Alex Bank Cairo, Alexandria, and Mansoura locations.",
+    overview:
+      "Multi-branch network and access control deployment for Alex Bank across Cairo, Alexandria, and Mansoura branches.",
+    scope: [
+      "Networks",
+      "Alex Bank Cairo Branch — Access Control",
+      "Alexandria Branch — Access Control",
+      "Mansoura Branch — Access Control",
+    ],
   },
   {
     id: "ict-006",
-    name: "Smart Building BMS Integration",
-    category: "Wireless & IoT",
+    name: "GM",
+    category: "Networks",
+    client: "General Motors Egypt",
+    location: "Egypt",
     description:
-      "Low-current integration linking HVAC, lighting, and occupancy sensors into a unified building management platform with real-time dashboards.",
+      "Network infrastructure, access control, and entrance gates for General Motors Egypt.",
+    overview:
+      "Network and security systems for General Motors Egypt, including access control and entrance gate integration.",
+    scope: ["Networks", "General Motors Egypt", "Access Control", "Entrance Gates"],
   },
   {
     id: "ict-007",
-    name: "Financial Services DR Site",
-    category: "Data Center",
+    name: "ITS",
+    category: "Networks",
+    client: "ITS (International Turnkey System)",
+    location: "Egypt",
     description:
-      "Disaster recovery site build-out with redundant power paths, structured cabling, and network segmentation aligned to compliance requirements.",
+      "Network infrastructure with access control, CCTV, and fire alarm for ITS.",
+    overview:
+      "Comprehensive low-current and network package for International Turnkey System (ITS), spanning access control, CCTV, and fire alarm systems.",
+    scope: [
+      "Networks",
+      "ITS (International Turnkey System)",
+      "Access Control",
+      "CCTV",
+      "Fire Alarm",
+    ],
   },
   {
     id: "ict-008",
-    name: "Airport Terminal CCTV Upgrade",
-    category: "Security Systems",
+    name: "WE",
+    category: "Networks",
+    client: "Telecom Egypt",
+    location: "Egypt",
     description:
-      "Replacement and expansion of surveillance infrastructure across terminal zones with high-resolution cameras and NVR clustering.",
+      "Network and security systems for Telecom Egypt data center and branch offices.",
+    overview:
+      "Multi-site network and security deployment for Telecom Egypt, covering the data center, Tanta branch, and Almaza branch with access control and CCTV.",
+    scope: [
+      "Networks",
+      "Telecom Egypt Data Center — Access Control, CCTV",
+      "WE Tanta Branch — Access Control, CCTV",
+      "WE Almaza Branch — Access Control, CCTV",
+    ],
   },
   {
     id: "ict-009",
-    name: "Industrial Plant Fiber Ring",
-    category: "Structured Cabling",
-    description:
-      "Outdoor-rated fiber ring connecting production halls, control rooms, and admin offices with OT/IT boundary segmentation.",
+    name: "Exxon Mobil",
+    category: "Networks",
+    client: "Exxon Mobil",
+    location: "Egypt",
+    description: "Network infrastructure with access control and CCTV for Exxon Mobil.",
+    overview:
+      "Network, access control, and CCTV systems delivered for Exxon Mobil facilities in Egypt.",
+    scope: ["Networks", "Exxon Mobil", "Access Control", "CCTV"],
   },
   {
     id: "ict-010",
-    name: "Hotel Guest Services Network",
-    category: "Network Infrastructure",
-    description:
-      "Guest Wi-Fi, staff VLANs, and PMS connectivity for a flagship hospitality property with captive portal and bandwidth management.",
+    name: "United Bank",
+    category: "Networks",
+    client: "United Bank",
+    location: "Egypt",
+    description: "Network infrastructure with access control and CCTV for United Bank.",
+    overview:
+      "Integrated network, access control, and CCTV deployment for United Bank operations.",
+    scope: ["Networks", "Access Control", "CCTV"],
   },
   {
     id: "ict-011",
-    name: "Government Ministry LAN Refresh",
-    category: "Network Infrastructure",
+    name: "National Bank of Egypt",
+    category: "Networks",
+    client: "National Bank of Egypt",
+    location: "Egypt",
     description:
-      "Phased replacement of legacy switching and cabling across ministry offices while maintaining uninterrupted operations during migration.",
+      "Network and security systems for National Bank of Egypt Visa branch and data center.",
+    overview:
+      "Network and security infrastructure for National Bank of Egypt across the Visa branch and data center facilities.",
+    scope: [
+      "Networks",
+      "National Bank of Egypt Visa Branch — Access Control",
+      "National Bank of Egypt Data Center — Access Control, CCTV",
+    ],
   },
   {
     id: "ict-012",
-    name: "Warehouse RFID & Scanning",
-    category: "Wireless & IoT",
-    description:
-      "Wireless infrastructure and handheld integration for inventory tracking across a large logistics warehouse and loading bays.",
+    name: "Cairo Bank",
+    category: "Networks",
+    client: "Cairo Bank",
+    location: "Egypt",
+    description: "Network infrastructure with access control and CCTV for Cairo Bank.",
+    overview:
+      "Network, access control, and CCTV systems for Cairo Bank, supporting secure banking operations.",
+    scope: ["Networks", "Cairo Bank", "Access Control", "CCTV"],
   },
   {
     id: "ict-013",
-    name: "Mixed-Use Tower Low Current",
-    category: "Structured Cabling",
-    description:
-      "Complete low-current package for a high-rise tower — data, voice, intercom, and backbone risers from basement to rooftop.",
+    name: "ROTANA",
+    category: "Networks",
+    client: "Rotana",
+    location: "Egypt",
+    description: "Network infrastructure and access control for Rotana Data Center.",
+    overview:
+      "Network infrastructure and access control system for Rotana Data Center.",
+    scope: ["Networks", "Rotana Data Center", "Access Control"],
   },
   {
     id: "ict-014",
-    name: "Stadium AV & Broadcast Feed",
-    category: "AV Integration",
+    name: "ITIDA",
+    category: "Networks",
+    client: "ITIDA",
+    location: "Egypt",
     description:
-      "Arena-wide audio, display, and broadcast connectivity supporting live events, press zones, and control-room signal routing.",
+      "Network infrastructure with access control and time-and-attendance for ITIDA.",
+    overview:
+      "Network, access control, and time-and-attendance systems for ITIDA facilities.",
+    scope: ["Networks", "ITIDA", "Access Control", "Time and Attendance"],
   },
   {
     id: "ict-015",
-    name: "Bank Branch Security Suite",
-    category: "Security Systems",
+    name: "GE Security",
+    category: "Networks",
+    client: "GE Egypt",
+    location: "Egypt",
     description:
-      "ATM surveillance, branch access control, and alarm integration deployed across a national branch network with unified reporting.",
+      "Network infrastructure with access control, CCTV, and time-and-attendance for GE Egypt Office.",
+    overview:
+      "Integrated network and security package for GE Egypt Office, including access control, CCTV, and time-and-attendance systems.",
+    scope: [
+      "Networks",
+      "GE Egypt Office",
+      "Access Control",
+      "CCTV",
+      "Time and Attendance",
+    ],
   },
   {
     id: "ict-016",
-    name: "Cloud-Ready Server Room",
-    category: "Data Center",
+    name: "Honda",
+    category: "Networks",
+    client: "Honda Egypt",
+    location: "Egypt",
     description:
-      "Server room modernization with cable management, patch panel organization, UPS connectivity, and environmental monitoring hooks.",
+      "Network infrastructure with access control and time-and-attendance for Honda Egypt.",
+    overview:
+      "Network, access control, and time-and-attendance deployment for Honda Egypt.",
+    scope: ["Networks", "Honda Egypt", "Access Control", "Time and Attendance"],
   },
   {
     id: "ict-017",
-    name: "Education Campus Intercom",
-    category: "AV Integration",
+    name: "Toyota",
+    category: "Networks",
+    client: "Toyota Egypt",
+    location: "Egypt",
     description:
-      "IP-based paging and intercom across classrooms, labs, and outdoor zones with scheduled announcements and emergency override.",
+      "Network infrastructure with access control and time-and-attendance for Toyota Egypt.",
+    overview:
+      "Network, access control, and time-and-attendance systems for Toyota Egypt operations.",
+    scope: ["Networks", "Toyota Egypt", "Access Control", "Time and Attendance"],
   },
   {
     id: "ict-018",
-    name: "Oil & Gas Field Comms Hut",
-    category: "Network Infrastructure",
+    name: "Sanofi Aventis",
+    category: "Networks",
+    client: "Aventis — Sanofi Pharma",
+    location: "Egypt",
     description:
-      "Ruggedized networking for remote field communications shelters, including microwave backhaul termination and edge switching.",
+      "Access control, entrance gates, and time-and-attendance for Sanofi Aventis pharmaceutical operations.",
+    overview:
+      "Security and workforce systems for Aventis — Sanofi Pharma, including access control, entrance gates, and time-and-attendance.",
+    scope: [
+      "Aventis — Sanofi Pharma",
+      "Access Control",
+      "Entrance Gates",
+      "Time and Attendance",
+    ],
   },
   {
     id: "ict-019",
-    name: "Residential Compound CCTV",
-    category: "Security Systems",
+    name: "Novartis",
+    category: "Networks",
+    client: "Novartis Pharma",
+    location: "Egypt",
     description:
-      "Perimeter and common-area surveillance for a gated residential compound with mobile app viewing and retention policies.",
+      "Access control and time-and-attendance for Novartis Pharma facilities.",
+    overview:
+      "Access control and time-and-attendance systems for Novartis Pharma in Egypt.",
+    scope: ["Novartis Pharma", "Access Control", "Time and Attendance"],
   },
   {
     id: "ict-020",
-    name: "Call Center Voice & Data",
-    category: "Structured Cabling",
+    name: "HSBC",
+    category: "Networks",
+    client: "HSBC Bank",
+    location: "Egypt",
     description:
-      "High-port-density cabling for a 200-seat contact center with QoS-ready switching and dedicated voice/data pathways.",
+      "Data network renovation for HSBC Bank administration building and data center.",
+    overview:
+      "Data network design and renovation for HSBC Bank's administration building, including copper and optical fiber cabling and full data center refurbishment.",
+    scope: [
+      "Networks",
+      "HSBC Bank",
+      "Data network for administration building",
+      "Copper cables and optical fiber (O/F) cables",
+      "Renovation of all data network for administration building",
+      "Renovation of data center on administration building",
+    ],
   },
   {
     id: "ict-021",
-    name: "Mall Digital Signage Network",
-    category: "AV Integration",
+    name: "IBM",
+    category: "General Contracting",
+    client: "IBM",
+    location: "Egypt",
     description:
-      "Media player connectivity and VLAN isolation for digital signage across retail corridors, food courts, and parking levels.",
+      "General contracting, IT, light current, networks, and telecommunications for IBM C(10) Building and Smart Village call center.",
+    overview:
+      "Multi-discipline fit-out for IBM across the C(10) Building and International Call Center at Smart Village — covering electrical works, data and telephone networks, CCTV, fire alarm, and intrusion detection.",
+    scope: [
+      "General contracting, Information technology, Light current, Networks, Telecommunication",
+      "C(10) Building — Electrical works: main distribution panels, sockets (rocket outlets), feeding cables of equipment",
+      "C(10) Building — Data network: telephone networks (BPX and telephone frames)",
+      "C(10) Building — CCTV works",
+      "IBM International Call Center (Smart Village) — Electrical works: main distribution panels, sockets (rocket outlets), feeding cables of equipment",
+      "IBM International Call Center (Smart Village) — Data network: telephone networks (BPX and telephone frames)",
+      "IBM International Call Center (Smart Village) — CCTV works",
+      "IBM International Call Center (Smart Village) — Fire Alarm System",
+      "IBM International Call Center (Smart Village) — Intrusion System",
+    ],
   },
   {
     id: "ict-022",
-    name: "Healthcare Clinic Wi-Fi",
-    category: "Wireless & IoT",
+    name: "Mobinil",
+    category: "Information Technology",
+    client: "Mobinil",
+    location: "Egypt",
     description:
-      "Clinical-grade wireless coverage for outpatient clinics with guest isolation and medical device-friendly RF planning.",
+      "IT infrastructure across Mobinil Nile City HQ, Smart Village backup, switches, and Alexandria central.",
+    overview:
+      "Large-scale information technology and low-current deployment for Mobinil across headquarters, backup facilities, switch sites, and the Awayed Central in Alexandria.",
+    scope: [
+      "Information technology",
+      "Mobinil Nile City (HQ Building) — Data network: infrastructure cabling (copper, fiber, telephone, cables, racks, and accessories)",
+      "Mobinil Nile City (HQ Building) — Light current system, access control, CCTV, entrance control gates",
+      "Mobinil Smart Village (Backup Building) — Data network: infrastructure cabling (copper, fiber, telephone, cables, racks, and accessories)",
+      "Mobinil Smart Village (Backup Building) — Light current system, access control, CCTV, entrance control gates",
+      "Mobinil Switches — Data network: infrastructure cabling (copper, fiber, telephone, cables, racks, and accessories)",
+      "Mobinil Switches — Light current system, access control",
+      "Mobinil Awayed Central (Alexandria) — Data network: infrastructure cabling (copper, fiber, telephone, cables, racks, and accessories)",
+      "Mobinil Awayed Central (Alexandria) — Light current system, access control",
+    ],
   },
   {
     id: "ict-023",
-    name: "Metro Station PA System",
-    category: "AV Integration",
+    name: "Mantrac",
+    category: "Networks",
+    client: "Mantrac",
+    location: "Smart Village, Egypt",
     description:
-      "Public address and emergency broadcast infrastructure across station platforms, concourses, and control rooms.",
+      "Full fit-out at Smart Village including civil, electrical, data network, and security systems.",
+    overview:
+      "Turnkey network and building infrastructure for Mantrac at Smart Village — from civil works and electrical distribution through data cabling and access control.",
+    scope: [
+      "Networks (Smart Village)",
+      "Civil works: demolition, blocking of walls, plastering, painting, flooring of concrete lands, doors, windows, raised floor, false ceiling",
+      "Electrical works: main distribution panels and sub distribution panels (lighting system)",
+      "Data network: infrastructure cabling (copper, fiber, telephone, cables, racks, and accessories)",
+      "Light current system",
+      "Access control system",
+    ],
   },
   {
     id: "ict-024",
-    name: "Pharmaceutical Clean Room Network",
-    category: "Network Infrastructure",
+    name: "WesternGeco",
+    category: "General Contracting",
+    client: "WesternGeco",
+    location: "Egypt",
     description:
-      "Controlled-environment networking for production monitoring, with shielded cabling and segregated QA/production zones.",
+      "General contracting and network infrastructure including civil, electrical, HVAC, and data network works.",
+    overview:
+      "Comprehensive general contracting and network deployment for WesternGeco, covering civil fit-out, electrical systems, earthing, HVAC, and data network infrastructure.",
+    scope: [
+      "General contracting, Networks",
+      "Civil works: raised floor, false ceiling, aluminium doors, plastering, painting, flooring of concrete",
+      "Electrical works: low voltage network, high voltage network",
+      "Earthing system",
+      "HVAC works",
+      "Data network",
+    ],
   },
   {
     id: "ict-025",
-    name: "Co-Working Space IT Fit-Out",
-    category: "Structured Cabling",
-    description:
-      "Flexible floor cabling with modular patch panels, meeting-room AV drops, and tenant-ready network closets.",
+    name: "Gupco",
+    category: "Networks",
+    client: "Gupco",
+    location: "Egypt",
+    description: "Data and voice network infrastructure for Gupco.",
+    overview:
+      "Data and voice network design and installation for Gupco operations.",
+    scope: ["Networks", "Data network", "Voice network"],
   },
   {
     id: "ict-026",
-    name: "Embassy Perimeter Security",
-    category: "Security Systems",
-    description:
-      "Multi-layer access control, intrusion detection, and video analytics for a diplomatic compound with hardened monitoring.",
+    name: "EGPC",
+    category: "Networks",
+    client: "EGPC",
+    location: "Egypt",
+    description: "Optical fiber cable renovation for EGPC building infrastructure.",
+    overview:
+      "Renovation of optical fiber (O/F) cabling across EGPC building infrastructure.",
+    scope: ["EGPC", "O/F works — renovation of O/F cables on building"],
   },
   {
     id: "ict-027",
-    name: "Sports Club Member Wi-Fi",
-    category: "Wireless & IoT",
+    name: "Credit Agricole",
+    category: "Light Current",
+    client: "Credit Agricole",
+    location: "Egypt",
     description:
-      "Guest and staff wireless across courts, pools, and lounges with bandwidth tiers and seamless roaming.",
+      "Light current and network fit-out including civil, electrical, security, HVAC, and data systems.",
+    overview:
+      "Full light-current and network programme for Credit Agricole — civil and electrical works, security and life-safety systems, HVAC, earthing, and data and voice networks.",
+    scope: [
+      "Light current, Networks",
+      "Civil works: demolition, blocking of walls, plastering, painting, flooring of concrete lands, doors, windows, raised floor, false ceiling",
+      "Electrical works: main distribution panels and sub distribution panels (lighting system)",
+      "Light current: security systems, access control, fire alarm and fire fighting systems, CCTV",
+      "HVAC works",
+      "Earthing systems: low voltage earthing system, low current earthing system",
+      "Data and voice networks",
+    ],
   },
   {
     id: "ict-028",
-    name: "Manufacturing MES Connectivity",
-    category: "Network Infrastructure",
+    name: "Xceed",
+    category: "Light Current",
+    client: "Xceed",
+    location: "Egypt",
     description:
-      "Shop-floor Ethernet for MES terminals and PLCs, with industrial-grade switching and OT security zoning.",
+      "Data center fit-out with electrical, light current, security, and network systems.",
+    overview:
+      "Data center infrastructure for Xceed covering electrical distribution, light-current security systems, and integrated low-current packages.",
+    scope: [
+      "Xceed Data Center",
+      "Electrical works: main distribution panels, sub distribution panels, lighting system",
+      "Light current: security systems, access control system, fire alarm and fire fighting systems, CCTV system",
+      "Earthing systems: low voltage earthing system, low current earthing system",
+      "HVAC works",
+      "Data and voice networks",
+    ],
   },
   {
     id: "ict-029",
-    name: "Luxury Retail AV Experience",
-    category: "AV Integration",
+    name: "EMA",
+    category: "Light Current",
+    client: "EMA",
+    location: "Egypt",
     description:
-      "In-store audio, video walls, and control systems for a flagship boutique with centralized content management.",
+      "Light current package with electrical works, security systems, and earthing.",
+    overview:
+      "Light-current and electrical infrastructure for EMA, including security systems, access control, fire alarm, CCTV, and earthing.",
+    scope: [
+      "Light current",
+      "Electrical works: main distribution panels and sub distribution panels (lighting system)",
+      "Light current: security systems, access control system, fire alarm and fire fighting systems, CCTV system",
+      "Earthing system: low voltage earthing system, low current earthing system",
+    ],
   },
   {
     id: "ict-030",
-    name: "NGO Regional Office LAN",
-    category: "Structured Cabling",
+    name: "National Bank",
+    category: "General Contracting",
+    client: "National Bank",
+    location: "Egypt",
     description:
-      "Cost-effective structured cabling and Wi-Fi for a regional NGO hub supporting field offices and video conferencing.",
+      "General contracting for National Bank El Shriefen and El Borg branches.",
+    overview:
+      "General contracting works for National Bank at El Shriefen and El Borg branches, including civil fit-out, electrical works, and furniture.",
+    scope: [
+      "General contracting",
+      "National Bank (El Shriefen & El Borg Branches)",
+      "Civil works: false ceiling, raised floor, and wall cladding",
+      "Electrical works",
+      "Furniture",
+    ],
   },
   {
     id: "ict-031",
-    name: "Parking Smart Guidance System",
-    category: "Wireless & IoT",
+    name: "Sanofi",
+    category: "Networks",
+    client: "Sanofi",
+    location: "Egypt",
     description:
-      "Sensor network and display integration for smart parking guidance across a multi-level garage with occupancy analytics.",
+      "Data network renovation for Sanofi Factory administration building and data center.",
+    overview:
+      "Data network design and renovation for Sanofi Factory, including copper and optical fiber cabling and full administration building data center refurbishment.",
+    scope: [
+      "Networks",
+      "Sanofi Factory",
+      "Data network for administration building",
+      "Copper cables and optical fiber (O/F) cables",
+      "Renovation of all data network for administration building",
+      "Renovation of data center on administration building",
+    ],
   },
   {
     id: "ict-032",
-    name: "Telecom Exchange Room Build",
-    category: "Data Center",
+    name: "ABB",
+    category: "Networks",
+    client: "ABB",
+    location: "Egypt",
     description:
-      "Exchange room fit-out with fiber distribution frames, power distribution, and cable routing for carrier handoff points.",
-  },
-  {
-    id: "ict-033",
-    name: "School Campus Safety Network",
-    category: "Security Systems",
-    description:
-      "Campus-wide cameras, emergency stations, and access control integrated with administrative monitoring dashboards.",
-  },
-  {
-    id: "ict-034",
-    name: "Convention Center Event IT",
-    category: "Network Infrastructure",
-    description:
-      "Scalable temporary and permanent networking for exhibition halls, supporting high-density events and exhibitor services.",
-  },
-  {
-    id: "ict-035",
-    name: "Remote Site VSAT & LAN",
-    category: "Network Infrastructure",
-    description:
-      "Satellite backhaul with local LAN distribution for remote operations sites lacking terrestrial fiber connectivity.",
-  },
-  {
-    id: "ict-036",
-    name: "Smart City Traffic CCTV",
-    category: "Security Systems",
-    description:
-      "City intersection surveillance and traffic monitoring with fiber backhaul and centralized video management infrastructure.",
+      "Data network renovation for ABB Administration Building and data center.",
+    overview:
+      "Data network design and renovation for ABB Administration Building, including copper and optical fiber cabling and data center refurbishment.",
+    scope: [
+      "Networks",
+      "ABB Administration Building",
+      "Data network for administration building",
+      "Copper cables and optical fiber (O/F) cables",
+      "Renovation of all data network for administration building",
+      "Renovation of data center on administration building",
+    ],
   },
 ];
 
 export const ICT_PROJECTS: Project[] = ICT_PROJECT_ENTRIES.map((project, index) =>
-  enrichProject(project, index, IMAGES[index % IMAGES.length], "ICT"),
+  buildIctProject(project, index),
 );
 
 export function getIctProjectById(id: string | undefined) {

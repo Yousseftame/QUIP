@@ -8,6 +8,7 @@ import IctProjectDetailPage from "@/pages/Projects/IctProjectDetailPage";
 import FinishingProjectsPage from "@/pages/Projects/FinishingProjectsPage";
 import FinishingProjectDetailRoute from "@/pages/Projects/FinishingProjectDetailRoute";
 import SoftwareProjectsPage from "@/pages/Projects/SoftwareProjectsPage";
+import SoftwareProjectDetailRoute from "@/pages/Projects/SoftwareProjectDetailRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const routes = createBrowserRouter([
       { path: "projects/finishing", element: <FinishingProjectsPage /> },
       { path: "projects/finishing/:projectId", element: <FinishingProjectDetailRoute /> },
       { path: "projects/software", element: <SoftwareProjectsPage /> },
+      { path: "projects/software/:projectId", element: <SoftwareProjectDetailRoute /> },
     ],
   },
 

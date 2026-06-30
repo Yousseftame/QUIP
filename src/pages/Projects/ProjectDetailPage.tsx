@@ -114,11 +114,6 @@ export default function ProjectDetailPage({
               <h2 className="project-detail__heading">Scope of work</h2>
               <DetailList items={project.scope} />
             </div>
-
-            <div className="project-detail__block">
-              <h2 className="project-detail__heading">Deliverables</h2>
-              <DetailList items={project.deliverables} />
-            </div>
           </div>
 
           <aside className="project-detail__sidebar">
