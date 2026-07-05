@@ -1,15 +1,24 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
 import { useEffect } from "react";
-import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import { useContactModal } from "@/context/contact-modal-context";
 
 const LABEL_INSET = 36;
 const FALLBACK_WIDTH = 960;
 const FALLBACK_HEIGHT = 900;
 
-const BODY_COPY =
-  "Quip's delivery capability is strengthened by long-standing partnerships with globally certified manufacturers and suppliers — including General Electric, R&M, Domnick Hunter, Gunnebo, Blutek, and Mann Filter. These relationships give our clients access to world-class products with full local support.";
+const PILLARS = [
+  {
+    title: "Integrated Delivery",
+    body:
+      "Three disciplines, one partner. We solve problems others can't because we don't hand off between firms.",
+  },
+  {
+    title: "AI-Powered Transformation",
+    body:
+      "We help businesses scale and automate their operations through intelligent, tailored digital solutions.",
+  },
+] as const;
 
 function LinkArrow() {
   return (
@@ -106,7 +115,7 @@ export default function IndustrialBackingSection() {
 
   return (
     <section ref={scrollRef} className="backing-section-scroll" id="backing">
-      <section className="backing-section" aria-label="Industrial backing">
+      <section className="backing-section" aria-label="What holds it together">
         <div className="backing-section__grid">
           <div ref={contentColRef} className="backing-section__content-col">
             <motion.div
@@ -114,21 +123,14 @@ export default function IndustrialBackingSection() {
               className="backing-section__content"
               style={{ y: contentY }}
             >
-              <span className="backing-section__label">Global Partnerships</span>
-              <h2 className="backing-section__heading">
-                <DiaTextReveal
-                  text="Backed by the world's leading names in technology and infrastructure."
-                  textColor="#0c0b11"
-                  colors={["#0c0b11"]}
-                  className="backing-section__heading-line"
-                  duration={1.1}
-                  delay={0.1}
-                  startOnView
-                  once
-                />
-              </h2>
-
-              <p className="backing-section__body">{BODY_COPY}</p>
+              <ul className="backing-section__pillars">
+                {PILLARS.map((pillar) => (
+                  <li key={pillar.title} className="backing-section__pillar">
+                    <h3 className="backing-section__pillar-title">{pillar.title}</h3>
+                    <p className="backing-section__pillar-body">{pillar.body}</p>
+                  </li>
+                ))}
+              </ul>
 
               <button
                 type="button"
@@ -147,7 +149,7 @@ export default function IndustrialBackingSection() {
             <motion.div className="backing-section__media-inner" style={{ clipPath }}>
               <img
                 src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=960&q=80"
-                alt="Modern glass building facade representing global partnerships"
+                alt="Team collaborating on integrated engineering and technology delivery"
                 className="backing-section__media-image"
                 width={FALLBACK_WIDTH}
                 height={FALLBACK_HEIGHT}

@@ -7,14 +7,39 @@ import HeroMenu from "@/components/sections/HeroMenu";
 import { ContactModal } from "@/components/ui/ContactModal";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import ClientLogosSection from "@/components/sections/ClientLogosSection";
+import CertificationsSection from "@/components/sections/CertificationsSection";
 import { PARTNER_SECTIONS } from "@/data/client-logos";
 import FooterSection from "@/components/sections/FooterSection";
 
+const STORY_HEADING = ["30 years of accountable", "engineering."];
+
+const STORY_LEAD =
+  "Quip began in 1990 in light current, networks, and security systems. Today it stands as one of the Middle East's leading multidisciplinary firms — a specialist in general contracting, communications, and information technology.";
+
+const STORY_EXPAND =
+  "Expanding into premium finishing and general contracting, and now delivering purpose-built software platforms and AI-powered transformation across government, energy, banking, technology, automotive, pharmaceutical, and real estate.";
+
 const PILLARS = [
-  "Proven Activity",
-  "Import, export & equipment trade",
-  "Engineering & spare parts",
-  "Agencies & general contracting",
+  {
+    title: "Engineering Accountability",
+    body:
+      "We deliver on what we commit to. Every scope, every timeline, every client relationship.",
+  },
+  {
+    title: "Client-Centric",
+    body:
+      "We collaborate closely across design and development, making your goals and aspirations our mission.",
+  },
+  {
+    title: "Integrated Delivery",
+    body:
+      "Three disciplines, one partner. We solve problems others can't because we don't hand off between firms.",
+  },
+  {
+    title: "AI-Powered Transformation",
+    body:
+      "We help businesses scale and automate their operations through intelligent, tailored digital solutions.",
+  },
 ];
 
 export default function AboutUs() {
@@ -113,8 +138,9 @@ export default function AboutUs() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            From light current to landmark contracting — QUIP has been shaping the
-            built environment of the Middle East for over three decades.
+            From ICT infrastructure and intelligent software to finishing and
+            general contracting — QUIP unifies three disciplines under one
+            accountable partner across the Middle East for over 30 years.
           </motion.p>
         </div>
 
@@ -185,13 +211,11 @@ export default function AboutUs() {
                 <span className="text-[10px] uppercase tracking-[0.25em] text-white/40">Our Story</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 leading-tight">
-                Quip was established{" "}
-                <span className="text-[#FF5949]">in 1990</span>
+                {STORY_HEADING[0]}{" "}
+                <span className="text-[#FF5949]">{STORY_HEADING[1]}</span>
               </h2>
               <p className="text-base md:text-lg text-white/60 leading-relaxed">
-                The beginning of its activity was in the fields of light current, networks
-                and security systems, and now with promising ambition, the company has become
-                a specialist in general contracting, communications and information technology.
+                {STORY_LEAD}
               </p>
             </motion.div>
 
@@ -203,9 +227,8 @@ export default function AboutUs() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="border-l-2 border-[#FF5949] pl-6"
             >
-              <p className="text-base md:text-lg text-white/70 leading-relaxed italic">
-                "Now it has become one of the leading companies in the fields of
-                general contracting in the Middle East."
+              <p className="text-base md:text-lg text-white/70 leading-relaxed">
+                {STORY_EXPAND}
               </p>
             </motion.div>
 
@@ -220,10 +243,10 @@ export default function AboutUs() {
                 <div className="h-px flex-1 bg-white/10" />
                 <span className="text-[10px] uppercase tracking-[0.25em] text-white/40">What We Do</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {PILLARS.map((pillar, i) => (
                   <motion.div
-                    key={pillar}
+                    key={pillar.title}
                     className="group flex items-start gap-3 p-4 rounded-xl border border-white/8 hover:border-[#FF5949]/40 hover:bg-[#FF5949]/5 transition-all duration-300"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -231,7 +254,14 @@ export default function AboutUs() {
                     transition={{ duration: 0.5, delay: 0.25 + i * 0.07 }}
                   >
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#FF5949] shrink-0 group-hover:scale-125 transition-transform" />
-                    <span className="text-sm md:text-base text-white/70 group-hover:text-white/90 transition-colors leading-snug">{pillar}</span>
+                    <div>
+                      <h3 className="text-sm md:text-base font-semibold text-white/90 group-hover:text-white transition-colors leading-snug">
+                        {pillar.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-white/55 group-hover:text-white/70 transition-colors leading-relaxed">
+                        {pillar.body}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -240,6 +270,8 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      <CertificationsSection />
 
       {PARTNER_SECTIONS.map((section) => (
         <ClientLogosSection key={section.id} {...section} />

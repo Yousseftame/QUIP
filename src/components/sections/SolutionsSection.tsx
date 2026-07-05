@@ -2,46 +2,163 @@ import { useCallback, useRef, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
-const HEADING_LINES = [
-  "Intelligent technology",
-  "for an evolving",
-  "environment",
-];
+const HEADING_LINES = ["Five capability tracks,", "one partner"];
 
-const SOLUTION_ITEMS = [
+type SolutionFeature = {
+  name: string;
+  description: string;
+};
+
+type SolutionItem = {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+  features: SolutionFeature[];
+  to: string;
+  image: string;
+};
+
+const SOLUTION_ITEMS: SolutionItem[] = [
   {
-    id: "quip-systems",
-    label: "QUIP SYSTEMS",
-    title: "The backbone of every smart facility",
-    body: "Structured cabling, data centers, network design, and telecom systems — engineered and deployed to international standards. From initial survey to final handover, we build infrastructure that performs under real conditions.",
+    id: "infrastructure",
+    label: "Infrastructure",
+    title: "The physical backbone of every connected facility",
+    body: "Core infrastructure engineered for reliability — from structured pathways and data environments to installed equipment ready for commissioning.",
+    features: [
+      {
+        name: "Network infrastructure",
+        description: "Structured LAN/WAN design and deployment built for uptime across enterprise and institutional sites.",
+      },
+      {
+        name: "Data centers",
+        description: "Tier-aligned fit-out covering containment, power, cooling, and rack infrastructure for mission-critical rooms.",
+      },
+      {
+        name: "Cabling systems",
+        description: "Copper and fiber backbone installation with testing, labeling, and documentation to global standards.",
+      },
+      {
+        name: "Low voltage networks",
+        description: "Integrated LV distribution supporting building systems, equipment, and facility-wide connectivity.",
+      },
+      {
+        name: "Equipment installation",
+        description: "Professional mounting, configuration, and handover of active and passive infrastructure hardware.",
+      },
+    ],
     to: "/projects/ict",
     image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
   },
   {
-    id: "quip-protect",
-    label: "QUIP PROTECT",
-    title: "Intelligent building systems that work around the clock",
-    body: "Access control, CCTV, fire alarm, public address, and building management systems. Decades of field experience delivering low-voltage solutions across commercial, industrial, and government facilities.",
-    to: "/projects/ict",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: "quip-digital",
-    label: "QUIP DIGITAL",
-    title: "Custom software built for operational reality",
-    body: "From enterprise applications to system integration and IT infrastructure — we design and deploy digital solutions that connect your teams, streamline your operations, and scale with your growth.",
+    id: "information-tech",
+    label: "Information Tech",
+    title: "Digital platforms and intelligent systems that scale",
+    body: "Purpose-built software, AI, and integration services that connect operations, teams, and data across the enterprise.",
+    features: [
+      {
+        name: "Software platforms",
+        description: "Custom web and enterprise applications designed for performance, security, and long-term maintainability.",
+      },
+      {
+        name: "AI solutions",
+        description: "Applied intelligence for automation, decision support, and domain-specific workflows across industries.",
+      },
+      {
+        name: "Systems integrations",
+        description: "API-led connectivity between ERP, CRM, legacy systems, and third-party platforms without silos.",
+      },
+      {
+        name: "Mobile development",
+        description: "Cross-platform mobile products for field teams, customers, and stakeholders on iOS and Android.",
+      },
+    ],
     to: "/projects/software",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
   },
   {
-    id: "quip-build",
-    label: "QUIP BUILD",
-    title: "General contracting delivered with engineering precision",
-    body: "Fit-out, finishing, and full general contracting services — executed by a team that understands both the technical and structural demands of modern facilities across Egypt and the wider Middle East.",
+    id: "light-current",
+    label: "Light Current",
+    title: "Smart building systems that protect and control",
+    body: "Low-voltage security, life-safety, and access solutions — specified, installed, and commissioned for continuous operation.",
+    features: [
+      {
+        name: "Access control",
+        description: "Card, biometric, and visitor management systems integrated with facility security policies.",
+      },
+      {
+        name: "CCTV systems",
+        description: "IP surveillance design with storage, analytics, and monitoring for commercial and critical sites.",
+      },
+      {
+        name: "Fire alarms",
+        description: "Detection, notification, and panel infrastructure aligned with code requirements and insurer standards.",
+      },
+      {
+        name: "Intrusion detection",
+        description: "Perimeter and interior alarm systems with monitoring workflows for rapid incident response.",
+      },
+    ],
+    to: "/projects/ict",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "networks",
+    label: "Networks",
+    title: "Voice and data networks built for performance",
+    body: "End-to-end telecom and networking — from copper and fiber plant to switching, routing, and operational readiness.",
+    features: [
+      {
+        name: "Telephone systems",
+        description: "PBX, VoIP, and unified communications platforms for offices, campuses, and multi-site operations.",
+      },
+      {
+        name: "Copper networks",
+        description: "Structured copper plant for voice and data with certified termination and performance validation.",
+      },
+      {
+        name: "Fiber optics",
+        description: "Single-mode and multi-mode backbone links, splicing, and OTDR testing for long-distance reliability.",
+      },
+      {
+        name: "Switching systems",
+        description: "Layer-2/3 switching architecture for segmented, secure, and high-throughput network environments.",
+      },
+      {
+        name: "Routing systems",
+        description: "WAN routing, redundancy, and policy-based traffic management for distributed enterprise networks.",
+      },
+    ],
+    to: "/projects/ict",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "general-contracting",
+    label: "General Contracting",
+    title: "Construction and finishing delivered with engineering discipline",
+    body: "From civil works and architectural coordination to premium fit-out — one accountable team from concept to handover.",
+    features: [
+      {
+        name: "Civil works",
+        description: "Groundworks, structural coordination, and site preparation aligned with project specifications and timelines.",
+      },
+      {
+        name: "Architectural design",
+        description: "Design development, detailing, and consultant coordination for functional, build-ready spaces.",
+      },
+      {
+        name: "Facilities management",
+        description: "Operational readiness, maintenance planning, and lifecycle support for occupied and commercial assets.",
+      },
+      {
+        name: "Finishing",
+        description: "High-spec interior fit-out, MEP coordination, and quality-controlled delivery for premium environments.",
+      },
+    ],
     to: "/projects/finishing",
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
   },
-] as const;
+];
 
 type CursorCoords = {
   x: number;
@@ -116,18 +233,11 @@ function SolutionStackItem({
   label,
   title,
   body,
+  features,
   to,
   image,
   zIndex,
-}: {
-  index: number;
-  label: string;
-  title: string;
-  body: string;
-  to: string;
-  image: string;
-  zIndex: number;
-}) {
+}: SolutionItem & { index: number; zIndex: number }) {
   const number = String(index).padStart(2, "0");
 
   return (
@@ -163,12 +273,23 @@ function SolutionStackItem({
             <h3 className="solutions-stack__title">{title}</h3>
             <p className="solutions-stack__body">{body}</p>
 
-            <Link to={to} className="solutions-stack__footer">
-              <span className="solutions-stack__footer-label">Learn more</span>
-              <span className="solutions-stack__footer-icon">
-                <LearnMoreArrow />
-              </span>
-            </Link>
+            <ul className="solutions-stack__features">
+              {features.map((feature) => (
+                <li key={feature.name} className="solutions-stack__feature">
+                  <span className="solutions-stack__feature-name">{feature.name}</span>
+                  <span className="solutions-stack__feature-desc">{feature.description}</span>
+                </li>
+              ))}
+            </ul>
+
+            {index === SOLUTION_ITEMS.length && (
+              <Link to={to} className="solutions-stack__footer">
+                <span className="solutions-stack__footer-label">Learn more</span>
+                <span className="solutions-stack__footer-icon">
+                  <LearnMoreArrow />
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -182,7 +303,7 @@ export default function SolutionsSection() {
       <div className="solutions-section__intro">
         <div className="solutions-section__intro-left">
           <div className="solutions-section__intro-head">
-            <span className="solutions-section__label">Solutions</span>
+            <span className="solutions-section__label">OUR SCOPE OF WORK</span>
             <span className="solutions-section__marker" aria-hidden />
           </div>
 
@@ -211,12 +332,8 @@ export default function SolutionsSection() {
           <SolutionStackItem
             key={item.id}
             index={index + 1}
-            label={item.label}
-            title={item.title}
-            body={item.body}
-            to={item.to}
-            image={item.image}
             zIndex={index + 1}
+            {...item}
           />
         ))}
       </div>

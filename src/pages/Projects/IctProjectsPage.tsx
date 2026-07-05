@@ -9,7 +9,8 @@ export default function IctProjectsPage() {
       eyebrow="Projects"
       titleLine1="ICT"
       titleLine2="Infrastructure"
-      subtitle="Network, security, and low-current systems delivered across the Middle East — from structured cabling to full-scale integration."
+      subtitle="Three decades of mission-critical networks, data centers, and 
+security systems for enterprise and government."
       projects={ICT_PROJECTS}
       detailBasePath={ICT_LIST_PATH}
     />

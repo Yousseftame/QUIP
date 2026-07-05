@@ -25,10 +25,9 @@ const NAV_LINKS = [
 ];
 
 const SECONDARY_LINKS = [
-  { label: "Innovation" },
-  { label: "Engineering" },
-  { label: "Contracting" },
-  { label: "FAQs" },
+  { label: "One firm" },
+  { label: "Three disciplines" },
+  { label: "Built to unify" },
 ];
 
 const SOCIAL_LINKS = [

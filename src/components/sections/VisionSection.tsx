@@ -11,20 +11,28 @@ const IMAGE_HEIGHT = 792;
 const LABEL_INSET = 36;
 
 const HEADING_LINES = [
-  "Three decades of engineering",
-  "excellence , built on trust,",
-  "driven by technology.",
+  "30 years of accountable",
+  "engineering.",
 ];
+
+const INTRO_LEAD =
+  "Quip began in 1990 in light current, networks, and security systems. Today it stands as one of the Middle East's leading multidisciplinary firms — a specialist in general contracting, communications, and information technology.";
+
+const INTRO_EXPAND =
+  "Expanding into premium finishing and general contracting, and now delivering purpose-built software platforms and AI-powered transformation across government, energy, banking, technology, automotive, pharmaceutical, and real estate.";
+
+const INTRO_STATS =
+  "30+ years of excellence · 120+ projects delivered · 03 integrated disciplines · 7+ industry sectors · MENA regional footprint";
 
 const CARDS = [
   {
-    title: "Approach",
-    body: "From light current and network systems to full-scale general contracting and software — Quip integrates every discipline under one roof, backed by partnerships with global leaders like GE, R&M, and Gunnebo.",
-    to: "/projects/ict",
+    title: "Vision",
+    body: "To be the region's leading multidisciplinary firm — where infrastructure, technology, and construction converge under one accountable partner for the Middle East's most demanding enterprises.",
+    to: "/about",
   },
   {
-    title: "Company",
-    body: "Founded with big ambition and over 30 years of proven growth across the Middle East — with an established presence in Egypt, Saudi Arabia, and expansion into Dubai. One company, one standard of excellence.",
+    title: "Mission",
+    body: "To deliver integrated ICT infrastructure, premium construction finishing, and intelligent software across every project — combining 30 years of engineering discipline with the capability to build, connect, and transform.",
     to: "/about",
   },
 ];
@@ -215,8 +223,10 @@ export default function VisionSection() {
                   />
                 ))}
               </h2>
-              <p className="vision-section__subheading">
-                Scalable, reliable, and accountable delivery , across ICT, software, and construction.
+              <p className="vision-section__subheading">{INTRO_LEAD}</p>
+              <p className="vision-section__subheading">{INTRO_EXPAND}</p>
+              <p className="vision-section__subheading vision-section__subheading--stats">
+                {INTRO_STATS}
               </p>
             </div>
 

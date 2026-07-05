@@ -122,7 +122,9 @@ export default function FinishingProjectsPage() {
           </h1>
 
           <p className="finishing-page__subtitle">
-            Select a delivery type below to browse its project index.
+          Structural execution, fit-out and finishing for residential, 
+commercial and national projects, building the region’s spaces 
+to hotel-grade standards.
           </p>
         </div>
       </section>

@@ -121,8 +121,8 @@ export default function SoftwareProjectsPage() {
           </h1>
 
           <p className="software-page__subtitle">
-            Web platforms and mobile applications we build — browse by platform and explore each
-            project in detail.
+          urpose-built AI systems, web platforms and mobile apps 
+          deployed across Egypt and the Gulf.
           </p>
         </div>
       </section>

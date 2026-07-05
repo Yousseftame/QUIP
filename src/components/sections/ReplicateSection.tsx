@@ -15,13 +15,20 @@ const LABEL_INSET = 36;
 const FALLBACK_WIDTH = 960;
 const FALLBACK_HEIGHT = 900;
 
-const HEADING_LINES = [
-  "Expanding across the Middle East",
-  "while maintaining one standard",
-];
+const HEADING_LINES = ["What holds", "it together"];
 
-const BODY_COPY =
-  "Beyond delivering individual projects, Quip has built a scalable model designed to grow across new markets without compromise. Our presence spans Egypt and Saudi Arabia — with Dubai next — and every new operation runs on the same engineering standards, accountability systems, and quality guarantees that have defined us for over 30 years.";
+const PILLARS = [
+  {
+    title: "Engineering Accountability",
+    body:
+      "We deliver on what we commit to. Every scope, every timeline, every client relationship.",
+  },
+  {
+    title: "Client-Centric",
+    body:
+      "We collaborate closely across design and development, making your goals and aspirations our mission.",
+  },
+] as const;
 
 function RequestArrow() {
   return (
@@ -118,7 +125,7 @@ export default function ReplicateSection() {
 
   return (
     <section ref={scrollRef} className="replicate-section-scroll" id="replicate">
-      <section className="replicate-section" aria-label="Replicating the model">
+      <section className="replicate-section" aria-label="What holds it together">
         <div className="replicate-section__grid">
           <div ref={mediaRef} className="replicate-section__media">
             <motion.div className="replicate-section__media-inner" style={{ clipPath }}>
@@ -186,7 +193,14 @@ export default function ReplicateSection() {
                 ))}
               </h2>
 
-              <p className="replicate-section__body">{BODY_COPY}</p>
+              <ul className="replicate-section__pillars">
+                {PILLARS.map((pillar) => (
+                  <li key={pillar.title} className="replicate-section__pillar">
+                    <h3 className="replicate-section__pillar-title">{pillar.title}</h3>
+                    <p className="replicate-section__pillar-body">{pillar.body}</p>
+                  </li>
+                ))}
+              </ul>
 
               <button
                 type="button"

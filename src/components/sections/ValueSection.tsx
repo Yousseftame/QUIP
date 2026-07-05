@@ -5,34 +5,35 @@ import TextType from "@/components/TextType";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
 const HEADING_LINES = [
-  "A proven system that guarantees quality,",
-  "accountability, and results you can measure",
+  "Three service lines that guarantee",
+  "quality, accountability, and results",
+  "you can measure.",
 ];
 
 const VALUE_ITEMS = [
   {
-    id: "digitalization",
-    title: "Digitalization",
-    body: "We unify ICT design, procurement, and deployment in a single managed workflow. Full traceability across every system — from initial scoping to final commissioning — so nothing falls through the gaps.",
-    to: "/projects/software",
+    id: "ict-infrastructure",
+    title: "ICT Infrastructure",
+    body: "Structured cabling, fiber optics and secure data-center build-outs; enterprise networks, low-current and integrated security systems: access control, CCTV, fire alarm and intrusion detection.",
+    to: "/projects/ict",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
-    imageAlt: "Network server room with lit cables",
+    imageAlt: "Network server room with structured cabling",
   },
   {
-    id: "sustainability",
-    title: "Sustainability",
-    body: "Built to last, not just to deliver. We source from certified global partners and apply engineering standards that extend the lifecycle of every infrastructure and construction project we undertake.",
-    to: "/about",
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80",
-    imageAlt: "Sustainable green building exterior",
+    id: "finishing-construction",
+    title: "Finishing & Construction",
+    body: "Civil works, MEP coordination and premium fit-out; interior finishing and facilities management delivered to hotel-grade standards.",
+    to: "/projects/finishing",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Premium interior construction and fit-out",
   },
   {
-    id: "certification",
-    title: "Certification",
-    body: "Over 30 years of operating to international standards — backed by partnerships with globally certified names including General Electric, R&M, and Gunnebo. Every project delivered with full documentation and compliance traceability.",
-    to: "/about",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
-    imageAlt: "Professional reviewing compliance documents",
+    id: "software-ai",
+    title: "Software & AI Solutions",
+    body: "LLMs, AI agents, NLP and predictive analytics; custom platforms, business automation, and cross-platform mobile apps.",
+    to: "/projects/software",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Software and AI development workspace",
   },
 ] as const;
 
@@ -171,7 +172,7 @@ export default function ValueSection() {
       <div className="value-section__grid">
         <div className="value-section__left">
           <div className="value-section__head">
-            <span className="value-section__label">Value</span>
+            <span className="value-section__label">What we offer</span>
             <span className="value-section__marker" aria-hidden />
           </div>
 

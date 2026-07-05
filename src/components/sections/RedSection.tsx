@@ -2,9 +2,9 @@ import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 import redSectionVideo from "@/assets/redsection.mp4";
 
 const HEADING_LINES = [
-  "The integrated engineering",
-  "model that eliminates",
-  "guesswork and delivers on time.",
+  "Innovation & General\u00A0Contracting —",
+  "unifying ICT infrastructure, software systems, finishing, construction,",
+  "and MEP coordination for the Middle East's leading\u00A0enterprises.",
 ];
 
 const BODY_COPY =

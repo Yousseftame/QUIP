@@ -85,7 +85,7 @@ const SEEDS: Seed[] = [
     name: "Key / 52",
     features: ["Residential", "East Cairo", "Luxury Living", "Smart Automation"],
     description:
-      "Proudly launching the first in the sequel of THE KEYS EDITION in East Cairo — Keys I 52, where unparalleled exclusivity meets serene tranquility. Nestled in a peaceful setting with prime access to main roads and unmatched privacy, the project is crafted with exquisite materials and high-end finishes that epitomize luxury living. State-of-the-art automation elevates everyday life, complemented by intercom, access card, Face ID, and light sensors. Residents enjoy 24-hour concierge and security services, valet parking, house keeping, laundry, a roof gym, cold kitchen, and co-working space.",
+    "General-contracting and build scope for Hassan Allam Properties' KEYS | 52 a boutique serviced-apartment community of 52 keys in East Cairo. Work spanned structural execution, MEP and fit-out coordination, and premium finishing across marble foyers, plastered interiors and fully-serviced amenity spaces engineered to hotel-grade standards for an elite residential audience.",
     images: [key1, key2, key3, key4, key5, key6, key7, key8],
   },
   {

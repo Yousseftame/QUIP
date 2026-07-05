@@ -116,10 +116,13 @@ export default function HeroSection() {
 
               <p className="hero-claim">
                 <span className="hero-claim__line">
-                  Innovation and precision for the
-                </span>
+                One firm.
+                 </span>
+                 <span className="hero-claim__line">
+                 Three disciplines.
+                 </span>
                 <span className="hero-claim__line">
-                  future of integrated solutions.
+                Built to unify.
                 </span>
               </p>
             </div>
