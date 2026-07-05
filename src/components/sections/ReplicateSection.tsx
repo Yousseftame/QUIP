@@ -29,16 +29,6 @@ const PILLARS = [
     body:
       "We collaborate closely across design and development, making your goals and aspirations our mission.",
   },
-  {
-    title: "Integrated Delivery",
-    body:
-      "Three disciplines, one partner. We solve problems others can't because we don't hand off between firms.",
-  },
-  {
-    title: "AI-Powered Transformation",
-    body:
-      "We help businesses scale and automate their operations through intelligent, tailored digital solutions.",
-  },
 ] as const;
 
 function RequestArrow() {
