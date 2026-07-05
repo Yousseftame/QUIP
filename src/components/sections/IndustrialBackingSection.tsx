@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
 import { useEffect } from "react";
 import { useContactModal } from "@/context/contact-modal-context";
+import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
 const LABEL_INSET = 36;
 const FALLBACK_WIDTH = 960;
@@ -124,11 +125,28 @@ export default function IndustrialBackingSection() {
               style={{ y: contentY }}
             >
               <ul className="backing-section__pillars">
-                {PILLARS.map((pillar) => (
-                  <li key={pillar.title} className="backing-section__pillar">
-                    <h3 className="backing-section__pillar-title">{pillar.title}</h3>
+                {PILLARS.map((pillar, index) => (
+                  <motion.li
+                    key={pillar.title}
+                    className="backing-section__pillar"
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.25 + index * 0.1 }}
+                  >
+                    <h3 className="backing-section__pillar-title">
+                      <DiaTextReveal
+                        text={pillar.title}
+                        textColor="#0c0b11"
+                        colors={["#0c0b11"]}
+                        duration={0.8}
+                        delay={0.25 + index * 0.1}
+                        startOnView
+                        once
+                      />
+                    </h3>
                     <p className="backing-section__pillar-body">{pillar.body}</p>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 

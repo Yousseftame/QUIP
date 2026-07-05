@@ -3513,11 +3513,13 @@ body.splash-active {
     flex-direction: column; /* Stack cards vertically */
     grid-template-columns: unset;
     min-height: 0;
+    height: auto;
   }
 
   /* Each card: natural content height, no stretch, proper gap between elements */
   .vision-card {
     min-height: 0;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;

@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import { useEffect } from "react";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import TextType from "@/components/TextType";
 import { useContactModal } from "@/context/contact-modal-context";
 import sectionImage from "@/assets/4.avif";
 
@@ -27,6 +28,16 @@ const PILLARS = [
     title: "Client-Centric",
     body:
       "We collaborate closely across design and development, making your goals and aspirations our mission.",
+  },
+  {
+    title: "Integrated Delivery",
+    body:
+      "Three disciplines, one partner. We solve problems others can't because we don't hand off between firms.",
+  },
+  {
+    title: "AI-Powered Transformation",
+    body:
+      "We help businesses scale and automate their operations through intelligent, tailored digital solutions.",
   },
 ] as const;
 
@@ -194,11 +205,28 @@ export default function ReplicateSection() {
               </h2>
 
               <ul className="replicate-section__pillars">
-                {PILLARS.map((pillar) => (
-                  <li key={pillar.title} className="replicate-section__pillar">
-                    <h3 className="replicate-section__pillar-title">{pillar.title}</h3>
+                {PILLARS.map((pillar, index) => (
+                  <motion.li
+                    key={pillar.title}
+                    className="replicate-section__pillar"
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.25 + index * 0.1 }}
+                  >
+                    <h3 className="replicate-section__pillar-title">
+                      <DiaTextReveal
+                        text={pillar.title}
+                        textColor="#0c0b11"
+                        colors={["#0c0b11"]}
+                        duration={0.8}
+                        delay={0.25 + index * 0.1}
+                        startOnView
+                        once
+                      />
+                    </h3>
                     <p className="replicate-section__pillar-body">{pillar.body}</p>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
