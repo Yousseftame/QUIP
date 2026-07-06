@@ -18,11 +18,13 @@ import type { IctCategoryId } from "@/types/ict-project";
 
 const LIST_PATH = "/projects/ict";
 
+const DEFAULT_ICT_CATEGORY: IctCategoryId = "all";
+
 function parseCategoryFromHash(): IctCategoryId {
   const hash = window.location.hash.replace("#", "");
   return ICT_CATEGORIES.some((category) => category.id === hash)
     ? (hash as IctCategoryId)
-    : ICT_CATEGORIES[0].id;
+    : DEFAULT_ICT_CATEGORY;
 }
 
 export default function IctProjectsPage() {

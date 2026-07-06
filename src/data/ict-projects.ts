@@ -54,8 +54,16 @@ import amanFinancialImg from "@/assets/Our Work – QUIP/aman.jpg";
 
 export const ICT_CATEGORIES: IctCategory[] = [
   {
-    id: "critical-networks",
+    id: "all",
     index: "01",
+    label: "All",
+    headline: "Complete ICT portfolio",
+    intro:
+      "Every QUIP ICT infrastructure engagement — critical networks, data centers, and security systems delivered under one accountable engineering partner.",
+  },
+  {
+    id: "critical-networks",
+    index: "02",
     label: "Critical Networks",
     headline: "Mission-critical enterprise sites",
     intro:
@@ -63,7 +71,7 @@ export const ICT_CATEGORIES: IctCategory[] = [
   },
   {
     id: "data-centers",
-    index: "02",
+    index: "03",
     label: "Data Centers",
     headline: "Secure, high-availability data centers",
     intro:
@@ -71,19 +79,11 @@ export const ICT_CATEGORIES: IctCategory[] = [
   },
   {
     id: "security-systems",
-    index: "03",
+    index: "04",
     label: "Security Systems",
     headline: "Integrated physical security",
     intro:
       "Access control, CCTV, intrusion, time-and-attendance, and entrance systems protecting banks, campuses, data centers, and industrial facilities.",
-  },
-  {
-    id: "all",
-    index: "04",
-    label: "All",
-    headline: "Complete ICT portfolio",
-    intro:
-      "Every QUIP ICT infrastructure engagement — critical networks, data centers, and security systems delivered under one accountable engineering partner.",
   },
 ];
 
