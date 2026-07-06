@@ -44,6 +44,10 @@ function ProjectGalleryCard({ project, detailPath }: ProjectGalleryCardProps) {
 
           <h3 className="work-gallery-card__title">{project.name}</h3>
 
+          {project.location ? (
+            <p className="work-gallery-card__location">{project.location}</p>
+          ) : null}
+
           <p className="work-gallery-card__description">{project.description}</p>
 
           <div className="work-gallery-card__footer">

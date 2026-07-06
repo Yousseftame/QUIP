@@ -44,6 +44,8 @@ import onMedia1 from "@/assets/finishingimages/ONmedia1.png";
 import onMedia2 from "@/assets/finishingimages/ONmedia2.png";
 import onTact1 from "@/assets/finishingimages/ONtact1.png";
 import onTact2 from "@/assets/finishingimages/ONtact2.png";
+import onCaravans1 from "@/assets/finishingimages/ONcaravans1.png";
+import onKetabak1 from "@/assets/finishingimages/ONketabak1.png";
 
 import transCaravan1 from "@/assets/finishingimages/TRANScaravanhaya1.png";
 import transCaravan2 from "@/assets/finishingimages/TRANScaravanhaya2.png";
@@ -173,13 +175,12 @@ const SEEDS: Seed[] = [
   {
     id: "fin-og-01",
     categoryId: "on-ground",
-    name: "IMCE Expo 2023 Ebda Booth",
+    name: "IMCE Expo Ebda Booth",
     features: [
       "Exhibition",
       "Live Build",
       "Booth Style: Industrial",
       "Location: New Cairo",
-      "Year: 2023",
       "Status: Delivered",
     ],
     description:
@@ -200,6 +201,24 @@ const SEEDS: Seed[] = [
     description:
       "On-ground delivery of a modern workspace for the Hayah Karima community initiative — built to support public programmes with a functional, contemporary office environment.",
     images: [onHayah1, onHayah2],
+  },
+  {
+    id: "fin-og-06",
+    categoryId: "on-ground",
+    name: "Caravans · Hayah Karima",
+    features: ["MOBILE UNITS", "MULTIPLE CITIES"],
+    description:
+      "Equipped caravans and custom mobile units supplied across Egyptian cities for the national Hayah Karima initiative.",
+    images: [onCaravans1],
+  },
+  {
+    id: "fin-og-07",
+    categoryId: "on-ground",
+    name: "Hayah Karima & Ketabak",
+    features: ["BOOTH", "LIBRARY", "CAIRO"],
+    description:
+      "Custom library-style booths and stands designed and built for the Hayah Karima and Ketabak reading programs.",
+    images: [onKetabak1],
   },
   {
     id: "fin-og-03",
