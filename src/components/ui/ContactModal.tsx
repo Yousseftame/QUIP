@@ -10,8 +10,8 @@ const CONTACT_ITEMS = [
   {
     id: "phone",
     label: "Phone",
-    value: "+20 155 216 1814",
-    href: "tel:+201552161814",
+    value: "+20 122 559 1268",
+    href: "tel:+201225591268",
   },
   {
     id: "email",

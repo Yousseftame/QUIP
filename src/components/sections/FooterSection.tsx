@@ -60,8 +60,8 @@ export default function FooterSection() {
             <h2 className="site-footer__heading">Contact</h2>
             <ul className="site-footer__links">
               <li>
-                <a href="tel:+201552161814" className="site-footer__link">
-                  +20 155 216 1814
+                <a href="tel:+201225591268" className="site-footer__link">
+                  +20 122 559 1268
                 </a>
               </li>
               <li>
